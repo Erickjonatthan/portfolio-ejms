@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { motion as Motion, useScroll, useMotionValueEvent } from "motion/react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const diff = current - scrollY.getPrevious();
+    setScrollDirection(diff > 0 ? "down" : "up");
+  });
 
   const scrollToSection = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -17,7 +25,11 @@ export default function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="w-full text-white p-4 flex items-center justify-between bg-inherit">
+    <Motion.header
+      className="w-full text-white p-4 flex items-center justify-between bg-inherit"
+      animate={{ opacity: scrollDirection === 'down' ? 0 : 1, y: scrollDirection === 'down' ? -20 : 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex items-center">
         <div>
           <h1 className="text-4xl font-bold">&lt;ErickJonathan/&gt;</h1>
@@ -25,11 +37,11 @@ export default function Header() {
         </div>
       </div>
       <nav className="hidden md:flex">
-        <ul className="flex space-x-4">
-          <li><button onClick={() => scrollToSection('about-me')} className="hover:underline">Sobre Mim</button></li>
-          <li><button onClick={() => scrollToSection('projects')} className="hover:underline">Projetos</button></li>
-          <li><button onClick={() => scrollToSection('skills')} className="hover:underline">Habilidades</button></li>
-          <li><button onClick={() => scrollToSection('contact')} className="hover:underline">Contato</button></li>
+        <ul className="flex space-x-8">
+          <li><button onClick={() => scrollToSection('about-me')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left">Sobre Mim</button></li>
+          <li><button onClick={() => scrollToSection('projects')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left">Projetos</button></li>
+          <li><button onClick={() => scrollToSection('skills')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left">Habilidades</button></li>
+          <li><button onClick={() => scrollToSection('contact')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4">Contato</button></li>
         </ul>
       </nav>
       <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -51,13 +63,13 @@ export default function Header() {
             </svg>
           </button>
           <ul className="space-y-4 text-2xl">
-            <li><button onClick={() => scrollToSection('about-me')} className="hover:underline">Sobre Mim</button></li>
-            <li><button onClick={() => scrollToSection('projects')} className="hover:underline">Projetos</button></li>
-            <li><button onClick={() => scrollToSection('skills')} className="hover:underline">Habilidades</button></li>
-            <li><button onClick={() => scrollToSection('contact')} className="hover:underline">Contato</button></li>
+            <li><button onClick={() => scrollToSection('about-me')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left">Sobre Mim</button></li>
+            <li><button onClick={() => scrollToSection('projects')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left">Projetos</button></li>
+            <li><button onClick={() => scrollToSection('skills')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left">Habilidades</button></li>
+            <li><button onClick={() => scrollToSection('contact')} className="relative text-2xl hover:text-neonBlue hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4">Contato</button></li>
           </ul>
         </div>
       )}
-    </header>
+    </Motion.header>
   );
 }
