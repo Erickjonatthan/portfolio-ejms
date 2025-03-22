@@ -43,6 +43,8 @@ export default function Home() {
           preload="auto"
           style={{ pointerEvents: 'none' }} // Adiciona pointer-events: none
         />
+        {/* Adiciona um contêiner sobre o vídeo para evitar interações */}
+        <div className="absolute top-0 left-0 w-full h-full" style={{ pointerEvents: 'none' }}></div>
         <div className="relative z-10 w-full h-full flex flex-col">
           <Header />
           <Welcome />
