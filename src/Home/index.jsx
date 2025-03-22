@@ -41,6 +41,7 @@ export default function Home() {
           loop
           muted
           preload="auto"
+          style={{ pointerEvents: 'none' }} // Adiciona pointer-events: none
         />
         <div className="relative z-10 w-full h-full flex flex-col">
           <Header />
