@@ -41,9 +41,10 @@ export default function Home() {
           loop
           muted
           preload="auto"
+          playsInline // Adiciona o atributo playsinline
           style={{ pointerEvents: 'none' }} // Adiciona pointer-events: none
         />
-        {/* Adiciona um contêiner sobre o vídeo para evitar interações */}
+        {/* Adiciona um contêiner invisível sobre o vídeo para capturar cliques */}
         <div className="absolute top-0 left-0 w-full h-full" style={{ pointerEvents: 'none' }}></div>
         <div className="relative z-10 w-full h-full flex flex-col">
           <Header />
