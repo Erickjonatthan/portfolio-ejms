@@ -22,6 +22,7 @@ export default function Home() {
           autoPlay
           loop
           muted
+          preload="auto" // Adiciona o atributo preload
         />
         <div className="relative z-10 w-full h-full flex flex-col">
           <Header />
