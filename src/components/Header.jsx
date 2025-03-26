@@ -21,15 +21,8 @@ export default function Header() {
 
   useMotionValueEvent(scrollY, "change", (current) => {
     const diff = current - scrollY.getPrevious();
-    if (diff > 0) {
-      setScrollDirection("down");
-      setIsVisible(false);
-    } else if (diff < 0) {
-      setScrollDirection("up");
-      setIsVisible(true);
-    } else {
-      setIsVisible(current <= 0);
-    }
+    setScrollDirection(diff > 0 ? "down" : "up");
+    setIsVisible(current <= 0);
   });
 
   const scrollToSection = (id) => {
