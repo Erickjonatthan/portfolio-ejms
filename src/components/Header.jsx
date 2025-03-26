@@ -13,10 +13,14 @@ export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
 
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
   useMotionValueEvent(scrollY, "change", (current) => {
-    const diff = current - scrollY.getPrevious();
-    setScrollDirection(diff > 0 ? "down" : "up");
-    setIsVisible(current <= 0 || diff < 0);
+    if (!isSafari) {
+      const diff = current - scrollY.getPrevious();
+      setScrollDirection(diff > 0 ? "down" : "up");
+      setIsVisible(current <= 0 || diff < 0);
+    }
   });
 
   const scrollToSection = (id) => {
@@ -39,8 +43,8 @@ export default function Header() {
           className="w-full text-white p-6 flex items-center justify-between bg-inherit fixed top-0 z-50"
           initial={{ opacity: 0, y: -20 }}
           animate={{
-            opacity: scrollDirection === "down" ? 0 : 1,
-            y: scrollDirection === "down" ? -20 : 0,
+            opacity: isSafari ? 1 : scrollDirection === "down" ? 0 : 1,
+            y: isSafari ? 0 : scrollDirection === "down" ? -20 : 0,
           }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
