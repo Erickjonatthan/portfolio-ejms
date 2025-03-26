@@ -44,3 +44,10 @@ body::-webkit-scrollbar-thumb:hover {
     background-position: 0% 50%;
   }
 }
+
+@media (orientation: landscape) {
+  .responsive {
+    font-size: 2rem !important;
+    padding-top: 12rem !important;
+  }
+}

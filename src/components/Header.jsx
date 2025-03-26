@@ -9,7 +9,6 @@ import { TypeAnimation } from 'react-type-animation';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState("up");
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
 
@@ -17,9 +16,7 @@ export default function Header() {
 
   useMotionValueEvent(scrollY, "change", (current) => {
     if (!isSafari) {
-      const diff = current - scrollY.getPrevious();
-      setScrollDirection(diff > 0 ? "down" : "up");
-      setIsVisible(current <= 0 || diff < 0);
+      setIsVisible(current <= 0);
     }
   });
 
@@ -42,13 +39,14 @@ export default function Header() {
         <Motion.header
           className="w-full text-white p-6 flex items-center justify-between bg-inherit fixed top-0 z-50"
           initial={{ opacity: 0, y: -20 }}
-          animate={{
-            opacity: isSafari ? 1 : scrollDirection === "down" ? 0 : 1,
-            y: isSafari ? 0 : scrollDirection === "down" ? -20 : 0,
-          }}
+          animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          style={{ backgroundColor: 'transparent' }} // Adiciona transparência ao fundo
+          style={{
+            background: isSafari
+              ? 'linear-gradient(135deg, #0A2D62 0%, #0A2D62 50%, rgba(10,45,98,0.8) 100%)'
+              : 'transparent',
+          }} // Adiciona gradiente azul escuro estiloso ao fundo
         >
           <div className="flex items-center">
             <div>
@@ -151,7 +149,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }} // Diminui a duração da transição
                 style={{ backgroundColor: 'transparent' }} // Adiciona transparência ao fundo
               >
                 <button
