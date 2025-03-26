@@ -13,16 +13,10 @@ export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('intersection-observer').catch((error) => console.error('Failed to load intersection-observer', error));
-    }
-  }, []);
-
   useMotionValueEvent(scrollY, "change", (current) => {
     const diff = current - scrollY.getPrevious();
     setScrollDirection(diff > 0 ? "down" : "up");
-    setIsVisible(current <= 0);
+    setIsVisible(current <= 0 || diff < 0);
   });
 
   const scrollToSection = (id) => {
@@ -50,6 +44,7 @@ export default function Header() {
           }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
+          style={{ backgroundColor: 'transparent' }} // Adiciona transparência ao fundo
         >
           <div className="flex items-center">
             <div>
@@ -153,6 +148,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
+                style={{ backgroundColor: 'transparent' }} // Adiciona transparência ao fundo
               >
                 <button
                   className="absolute top-4 right-4"
