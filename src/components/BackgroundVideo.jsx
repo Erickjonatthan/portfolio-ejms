@@ -6,6 +6,7 @@ import backgroundImage from "../assets/fundo-imagem.png";
 
 export default function BackgroundVideo() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const videoElement = document.getElementById("background-video");
@@ -16,7 +17,7 @@ export default function BackgroundVideo() {
 
   return (
     <div className="relative w-full h-screen">
-      {!isVideoLoaded && (
+      {(!isVideoLoaded || isMenuOpen) && (
         <img
           src={backgroundImage}
           alt="Background"
@@ -25,7 +26,7 @@ export default function BackgroundVideo() {
       )}
       <video
         id="background-video"
-        className={`absolute top-0 left-0 w-full h-full object-cover ${isVideoLoaded ? 'block' : 'hidden'}`}
+        className={`absolute top-0 left-0 w-full h-full object-cover ${isVideoLoaded && !isMenuOpen ? 'block' : 'hidden'}`}
         src={backgroundVideo}
         autoPlay
         loop
@@ -35,7 +36,7 @@ export default function BackgroundVideo() {
       />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-[#01050C]"></div>
       <div className="relative z-10 w-full h-full flex flex-col">
-        <Header />
+        <Header setIsMenuOpen={setIsMenuOpen} />
         <Welcome />
       </div>
     </div>
