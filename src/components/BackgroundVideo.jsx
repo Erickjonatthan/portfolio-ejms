@@ -10,12 +10,22 @@ export default function BackgroundVideo() {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsVideoLoaded(false);
+    };
+
+    window.addEventListener('resize', handleResize);
+
     if (!isMobile) {
       const videoElement = document.getElementById("background-video");
       videoElement.onloadeddata = () => {
         setIsVideoLoaded(true);
       };
     }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [isMobile]);
 
   return (
