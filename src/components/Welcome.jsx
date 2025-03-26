@@ -2,9 +2,12 @@ import React from 'react';
 
 export default function Welcome() {
   return (
-    <div className="flex flex-col justify-center h-full pl-8">
-      <h1 className="text-5xl font-bold text-white">
-        Olá, Me chamo Erick Jonathan
+    <div className="flex flex-col justify-center h-full pl-4">
+      <h1 className="text-left text-3xl sm:text-4xl md:text-5xl font-bold text-white p-5 leading-normal md:leading-snug">
+        Converto <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">desafios</span> em oportunidades<br />
+        por meio de <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">soluções tecnológicas</span> eficientes,<br />
+        impulsionando <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">negócios</span> e aprimorando a<br />
+        <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">qualidade de vida</span>.
       </h1>
     </div>
   );

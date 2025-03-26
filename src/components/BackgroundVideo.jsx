@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import backgroundVideo from "../assets/fundo-video.mp4";
-import backgroundImage from "../assets/fundo-imagem.png"; // Substitua pelo nome do seu arquivo de imagem
+import backgroundImage from "../assets/fundo-imagem.png"; 
 
 export default function BackgroundVideo() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -33,6 +33,7 @@ export default function BackgroundVideo() {
         preload="auto"
         playsInline
       />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-[#01050C]"></div>
       <div className="relative z-10 w-full h-full flex flex-col">
         <Header />
         <Welcome />
