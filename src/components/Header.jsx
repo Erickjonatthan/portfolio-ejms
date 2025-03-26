@@ -7,8 +7,8 @@ import {
 } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 
-export default function Header({ setIsMenuOpen }) {
-  const [isMenuOpen, setIsMenuOpenState] = useState(false);
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
 
@@ -22,7 +22,6 @@ export default function Header({ setIsMenuOpen }) {
 
   const scrollToSection = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpenState(false);
     setIsMenuOpen(false);
   };
 
@@ -32,8 +31,7 @@ export default function Header({ setIsMenuOpen }) {
     } else {
       document.body.style.overflow = "auto";
     }
-    setIsMenuOpen(isMenuOpen);
-  }, [isMenuOpen, setIsMenuOpen]);
+  }, [isMenuOpen]);
 
   return (
     <AnimatePresence>
@@ -111,7 +109,7 @@ export default function Header({ setIsMenuOpen }) {
               </li>
             </ul>
           </nav>
-          <button className="md:hidden" onClick={() => setIsMenuOpenState(!isMenuOpen)}>
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? (
               <svg
                 className="w-8 h-8"
@@ -151,12 +149,12 @@ export default function Header({ setIsMenuOpen }) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.2 }} // Diminui a duração da transição
+                transition={{ duration: 0.4 }} // Diminui a duração da transição
                 style={{ backgroundColor: 'transparent' }} // Adiciona transparência ao fundo
               >
                 <button
                   className="absolute top-4 right-4"
-                  onClick={() => setIsMenuOpenState(false)}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   <svg
                     className="w-8 h-8 text-white"
