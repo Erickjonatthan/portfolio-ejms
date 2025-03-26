@@ -30,23 +30,22 @@ export default function BackgroundVideo() {
 
   return (
     <div className="relative w-full h-screen">
-      {!isVideoLoaded && (
-        <img
-          src={backgroundImage}
-          alt="Background"
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        />
-      )}
+      <img
+        src={backgroundImage}
+        alt="Background"
+        className={`absolute top-0 left-0 w-full h-full object-cover ${isVideoLoaded ? 'hidden' : 'block'}`}
+      />
       {!isMobile && (
         <video
           id="background-video"
-          className={`absolute top-0 left-0 w-full h-full object-cover ${isVideoLoaded ? 'block' : 'hidden'}`}
+          className="absolute top-0 left-0 w-full h-full object-cover"
           src={backgroundVideo}
           autoPlay
           loop
           muted
           preload="auto"
           playsInline
+          onLoadedData={() => setIsVideoLoaded(true)}
         />
       )}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-[#01050C]"></div>
