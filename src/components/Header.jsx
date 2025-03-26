@@ -46,7 +46,7 @@ export default function Header() {
             background: isSafari
               ? 'linear-gradient(135deg, #0A2D62 0%, #0A2D62 50%, rgba(10,45,98,0.8) 100%)'
               : 'transparent',
-          }} // Adiciona gradiente azul escuro estiloso ao fundo
+          }}
         >
           <div className="flex items-center">
             <div>
@@ -149,8 +149,8 @@ export default function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }} // Diminui a duração da transição
-                style={{ backgroundColor: 'transparent' }} // Adiciona transparência ao fundo
+                transition={{ duration: 0.4 }}
+                style={{ backgroundColor: 'transparent' }}
               >
                 <button
                   className="absolute top-4 right-4"
