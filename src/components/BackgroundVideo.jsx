@@ -7,25 +7,31 @@ import backgroundImage from "../assets/fundo-imagem.png";
 export default function BackgroundVideo() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showImage, setShowImage] = useState(true);
+  const [showImage, setShowImage] = useState(false);
 
   useEffect(() => {
     const videoElement = document.getElementById("background-video");
     videoElement.onloadeddata = () => {
       setIsVideoLoaded(true);
     };
+  }, []);
 
-    // Mostrar a imagem por alguns segundos antes de exibir o vídeo
-    const timer = setTimeout(() => {
-      setShowImage(false);
-    }, 3000); // 3000ms = 3 segundos
+  useEffect(() => {
+    let timer;
+    if (isMenuOpen) {
+      setShowImage(true);
+    } else {
+      timer = setTimeout(() => {
+        setShowImage(false);
+      }, 3000); // 3000ms = 3 segundos
+    }
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isMenuOpen]);
 
   return (
     <div className="relative w-full h-screen">
-      {(showImage || !isVideoLoaded || isMenuOpen) && (
+      {(showImage || !isVideoLoaded) && (
         <img
           src={backgroundImage}
           alt="Background"
