@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import Footer from "../components/Footer";
 import AboutMe from "../components/AboutMe";
@@ -7,10 +7,26 @@ import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import Technologies from "../components/Technologies";
 import BackgroundVideo from "../components/BackgroundVideo";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import backgroundImage from "../assets/fundo.png"; 
 
 export default function Home() {
   useDocumentTitle("Home Page");
+
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollToTop(true);
+      } else {
+        setShowScrollToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen">
@@ -30,6 +46,7 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+      <ScrollToTopButton show={showScrollToTop} />
     </div>
   );
 }
