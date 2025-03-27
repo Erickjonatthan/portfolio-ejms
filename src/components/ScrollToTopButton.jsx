@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ScrollToTopButton({ show }) {
+const ScrollToTopButton = React.memo(({ show }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -10,6 +10,7 @@ export default function ScrollToTopButton({ show }) {
       onClick={scrollToTop}
       className="fixed bottom-4 right-4 p-3 bg-neonBlue text-white rounded-full shadow-lg hover:bg-neonBlue-dark transition duration-300 z-50 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-neonBlue focus:ring-opacity-50"
       style={{ transition: 'opacity 0.5s, transform 0.5s', opacity: show ? 1 : 0 }}
+      aria-label="Scroll to top"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,4 +28,6 @@ export default function ScrollToTopButton({ show }) {
       </svg>
     </button>
   );
-}
+});
+
+export default ScrollToTopButton;

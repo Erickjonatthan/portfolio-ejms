@@ -7,7 +7,8 @@ import { TypeAnimation } from 'react-type-animation';
 import { useSafariCheck } from "../hooks/useSafariCheck";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
 import { useSectionObserver } from "../hooks/useSectionObserver";
-export default function Header() {
+
+const Header = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isSafari = useSafariCheck();
   const isVisible = useScrollVisibility(isSafari);
@@ -66,12 +67,13 @@ export default function Header() {
               </p>
             </div>
           </div>
-          <nav className="hidden md:flex">
+          <nav className="hidden md:flex" aria-label="Main Navigation">
             <ul className="flex space-x-8">
               <li>
                 <button
                   onClick={() => scrollToSection("about-me")}
-                  className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  aria-label="Sobre Mim"
                 >
                   Sobre Mim
                 </button>
@@ -79,7 +81,8 @@ export default function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("projects")}
-                  className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  aria-label="Projetos"
                 >
                   Projetos
                 </button>
@@ -87,7 +90,8 @@ export default function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("skills")}
-                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  aria-label="Habilidades"
                 >
                   Habilidades
                 </button>
@@ -95,14 +99,15 @@ export default function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4`}
+                  className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4`}
+                  aria-label="Contato"
                 >
                   Contato
                 </button>
               </li>
             </ul>
           </nav>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle Menu">
             {isMenuOpen ? (
               <svg
                 className="w-8 h-8"
@@ -148,6 +153,7 @@ export default function Header() {
                 <button
                   className="absolute top-4 right-4"
                   onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close Menu"
                 >
                   <svg
                     className="w-8 h-8 text-white"
@@ -168,7 +174,8 @@ export default function Header() {
                   <li>
                     <button
                       onClick={() => scrollToSection("about-me")}
-                      className="relative text-2xl hover:text-neonBlue text-left"
+                      className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
+                      aria-label="Sobre Mim"
                     >
                       Sobre Mim
                     </button>
@@ -176,7 +183,8 @@ export default function Header() {
                   <li>
                     <button
                       onClick={() => scrollToSection("projects")}
-                      className="relative text-2xl hover:text-neonBlue text-left"
+                      className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
+                      aria-label="Projetos"
                     >
                       Projetos
                     </button>
@@ -184,7 +192,8 @@ export default function Header() {
                   <li>
                     <button
                       onClick={() => scrollToSection("skills")}
-                      className="relative text-2xl hover:text-neonBlue text-left"
+                      className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
+                      aria-label="Habilidades"
                     >
                       Habilidades
                     </button>
@@ -192,7 +201,8 @@ export default function Header() {
                   <li>
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="relative text-2xl hover:text-neonBlue text-left mr-4"
+                      className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
+                      aria-label="Contato"
                     >
                       Contato
                     </button>
@@ -205,4 +215,6 @@ export default function Header() {
       )}
     </AnimatePresence>
   );
-}
+});
+
+export default Header;
