@@ -5,7 +5,7 @@ import Welcome from "./Welcome";
 import backgroundVideo from "../assets/fundo-video.mp4";
 import backgroundImage from "../assets/fundo-imagem.png"; 
 
-const BackgroundVideo = React.memo(() => {
+export default function BackgroundVideo() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -45,7 +45,6 @@ const BackgroundVideo = React.memo(() => {
           muted
           preload="auto"
           playsInline
-          aria-label="Background video"
           onLoadedData={() => setIsVideoLoaded(true)}
         />
       )}
@@ -56,6 +55,4 @@ const BackgroundVideo = React.memo(() => {
       </div>
     </div>
   );
-});
-
-export default BackgroundVideo;
+}

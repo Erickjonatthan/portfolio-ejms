@@ -7,8 +7,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { useSafariCheck } from "../hooks/useSafariCheck";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
 import { useSectionObserver } from "../hooks/useSectionObserver";
-
-const Header = React.memo(() => {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isSafari = useSafariCheck();
   const isVisible = useScrollVisibility(isSafari);
@@ -67,13 +66,12 @@ const Header = React.memo(() => {
               </p>
             </div>
           </div>
-          <nav className="hidden md:flex" aria-label="Main Navigation">
+          <nav className="hidden md:flex">
             <ul className="flex space-x-8">
               <li>
                 <button
                   onClick={() => scrollToSection("about-me")}
-                  className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Sobre Mim"
+                  className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
                 >
                   Sobre Mim
                 </button>
@@ -81,8 +79,7 @@ const Header = React.memo(() => {
               <li>
                 <button
                   onClick={() => scrollToSection("projects")}
-                  className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Projetos"
+                  className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
                 >
                   Projetos
                 </button>
@@ -90,8 +87,7 @@ const Header = React.memo(() => {
               <li>
                 <button
                   onClick={() => scrollToSection("skills")}
-                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Habilidades"
+                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
                 >
                   Habilidades
                 </button>
@@ -99,15 +95,14 @@ const Header = React.memo(() => {
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4`}
-                  aria-label="Contato"
+                  className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4`}
                 >
                   Contato
                 </button>
               </li>
             </ul>
           </nav>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle Menu">
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? (
               <svg
                 className="w-8 h-8"
@@ -153,7 +148,6 @@ const Header = React.memo(() => {
                 <button
                   className="absolute top-4 right-4"
                   onClick={() => setIsMenuOpen(false)}
-                  aria-label="Close Menu"
                 >
                   <svg
                     className="w-8 h-8 text-white"
@@ -174,8 +168,7 @@ const Header = React.memo(() => {
                   <li>
                     <button
                       onClick={() => scrollToSection("about-me")}
-                      className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Sobre Mim"
+                      className="relative text-2xl hover:text-neonBlue text-left"
                     >
                       Sobre Mim
                     </button>
@@ -183,8 +176,7 @@ const Header = React.memo(() => {
                   <li>
                     <button
                       onClick={() => scrollToSection("projects")}
-                      className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Projetos"
+                      className="relative text-2xl hover:text-neonBlue text-left"
                     >
                       Projetos
                     </button>
@@ -192,8 +184,7 @@ const Header = React.memo(() => {
                   <li>
                     <button
                       onClick={() => scrollToSection("skills")}
-                      className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Habilidades"
+                      className="relative text-2xl hover:text-neonBlue text-left"
                     >
                       Habilidades
                     </button>
@@ -201,8 +192,7 @@ const Header = React.memo(() => {
                   <li>
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Contato"
+                      className="relative text-2xl hover:text-neonBlue text-left mr-4"
                     >
                       Contato
                     </button>
@@ -215,6 +205,4 @@ const Header = React.memo(() => {
       )}
     </AnimatePresence>
   );
-});
-
-export default Header;
+}
