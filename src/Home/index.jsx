@@ -32,9 +32,11 @@ export default function Home() {
     <div className="relative flex flex-col items-center justify-center min-h-screen">
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.38)), url(${backgroundImage})`
+        }}
       ></div>
-      <div className="absolute top-0 left-0 w-full h-full bg-[#000000] opacity-80"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-[#000000] opacity-35"></div>
       <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-screen">
         <BackgroundVideo />
         <main className="flex-grow flex flex-col items-center justify-center w-full">

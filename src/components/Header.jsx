@@ -15,8 +15,8 @@ const Header = React.memo(() => {
   const activeSection = useSectionObserver();
 
   const scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false);
+      document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "center" });
+      setIsMenuOpen(false);
   };
 
   useEffect(() => {
