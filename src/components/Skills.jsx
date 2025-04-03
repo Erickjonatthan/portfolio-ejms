@@ -32,7 +32,7 @@ export default function Skills() {
             qualidade e eficiência em cada projeto.
           </p>
           <DotLottieReact
-            src="/public/assets/tec.lottie"
+            src="/assets/tec.lottie" // Atualize o caminho para refletir a nova localização
             loop
             autoplay
             className="w-full max-w-xl"
