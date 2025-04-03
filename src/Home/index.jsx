@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import useDocumentTitle from "../hooks/useDocumentTitle";
 import Footer from "../components/Footer";
 import AboutMe from "../components/AboutMe";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import Contact from "../components/Contact";
-import Technologies from "../components/Technologies";
 import BackgroundVideo from "../components/BackgroundVideo";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import backgroundImage from "../assets/fundo.png"; 
 
 export default function Home() {
-  useDocumentTitle("Home Page");
-
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
@@ -41,9 +37,8 @@ export default function Home() {
         <BackgroundVideo />
         <main className="flex-grow flex flex-col items-center justify-center w-full">
           <AboutMe />
-          <Projects />
           <Skills />
-          <Technologies />
+          <Projects />
           <Contact />
         </main>
         <Footer />

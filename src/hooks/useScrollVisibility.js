@@ -5,9 +5,11 @@ export function useScrollVisibility(isSafari) {
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
 
+  const tolerance = 20; // Ajuste este valor para definir a tolerância
+
   useMotionValueEvent(scrollY, "change", (current) => {
     if (!isSafari) {
-      setIsVisible(current <= 0);
+      setIsVisible(current <= tolerance); // Verifica se está dentro da tolerância
     }
   });
 
