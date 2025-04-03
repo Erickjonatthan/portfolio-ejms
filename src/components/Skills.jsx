@@ -32,7 +32,7 @@ export default function Skills() {
             qualidade e eficiência em cada projeto.
           </p>
           <DotLottieReact
-            src="./src/assets/tec.lottie"
+            src="/public/assets/tec.lottie"
             loop
             autoplay
             className="w-full max-w-xl"
