@@ -75,7 +75,25 @@ const Header = React.memo(() => {
                   className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
                   aria-label="Sobre Mim"
                 >
-                  Sobre Mim
+                  Sobre
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("skills")}
+                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  aria-label="Skills"
+                >
+                  Skills
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("education")}
+                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
+                  aria-label="Educação"
+                >
+                  Educação
                 </button>
               </li>
               <li>
@@ -85,15 +103,6 @@ const Header = React.memo(() => {
                   aria-label="Projetos"
                 >
                   Projetos
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("skills")}
-                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Habilidades"
-                >
-                  Habilidades
                 </button>
               </li>
               <li>

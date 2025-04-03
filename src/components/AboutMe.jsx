@@ -10,15 +10,15 @@ export default function AboutMe() {
     <Motion.section
       ref={ref}
       id="about-me"
-      className="w-full p-8 shadow-md my-4 text-white flex flex-col items-center"
+      className="w-full p-8 my-4 text-white flex flex-col items-center"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
       <div className="flex flex-col md:flex-row items-center text-center md:text-left max-w-4xl">
         <div className="flex-1 mb-6 md:mb-0">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 hover:text-blue-400 transition-colors duration-300">
-            Sobre Mim
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            Quem é <span className="text-white hover:text-blue-600 transition-colors duration-300">Erick</span>?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify">
             Olá, eu sou [Seu Nome], um desenvolvedor web com experiência em Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate quisquam ducimus laborum sint reiciendis! Voluptatum, aut dolore. Commodi, fugit nam autem necessitatibus ad quis, inventore doloribus natus ipsum modi alias.
