@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
 import Header from "./Header";
 import Welcome from "./Welcome";
-import backgroundVideo from "../assets/fundo-video.mp4";
-import backgroundImage from "../assets/fundo-imagem.png"; 
 
 const BackgroundVideo = React.memo(() => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -31,7 +29,7 @@ const BackgroundVideo = React.memo(() => {
   return (
     <div className="relative w-full h-screen">
       <img
-        src={backgroundImage}
+        src="/assets/fundo-imagem.png"
         alt="Background"
         className={`absolute top-0 left-0 w-full h-full object-cover ${isVideoLoaded ? 'hidden' : 'block'}`}
       />
@@ -39,7 +37,7 @@ const BackgroundVideo = React.memo(() => {
         <video
           id="background-video"
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={backgroundVideo}
+          src="/assets/fundo-video.mp4"
           autoPlay
           loop
           muted

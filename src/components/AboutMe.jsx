@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion as Motion } from 'framer-motion';
-import profilePicture from "../assets/profile.jpg";
 
 export default function AboutMe() {
   const ref = useRef(null);
@@ -43,7 +42,7 @@ export default function AboutMe() {
         </div>
         <div className="flex-shrink-0 md:ml-28">
           <img
-            src={profilePicture}
+            src="/assets/profile.jpg"
             alt="Foto de [Seu Nome], desenvolvedor web"
             loading="lazy"
             className="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-110 hover:shadow-blue-500/50 object-cover"

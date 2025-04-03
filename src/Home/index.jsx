@@ -6,7 +6,6 @@ import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import BackgroundVideo from "../components/BackgroundVideo";
 import ScrollToTopButton from "../components/ScrollToTopButton";
-import backgroundImage from "../assets/fundo.png"; 
 
 export default function Home() {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -29,7 +28,7 @@ export default function Home() {
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.38)), url(${backgroundImage})`
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.38)), url("/assets/fundo.png")`,
         }}
       ></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[#000000] opacity-35"></div>
