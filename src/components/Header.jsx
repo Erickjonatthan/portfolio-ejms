@@ -1,23 +1,39 @@
 import React, { useState, useEffect } from "react";
-import {
-  motion as Motion,
-  AnimatePresence,
-} from "framer-motion";
-import { TypeAnimation } from 'react-type-animation';
+import { motion as Motion, AnimatePresence } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
 import { useSafariCheck } from "../hooks/useSafariCheck";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
-import { useSectionObserver } from "../hooks/useSectionObserver";
 
 const Header = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(null); // Estado para rastrear o item ativo
   const isSafari = useSafariCheck();
   const isVisible = useScrollVisibility(isSafari);
-  const activeSection = useSectionObserver();
 
   const scrollToSection = (id) => {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "center" });
-      setIsMenuOpen(false);
+    const section = document.getElementById(id);
+    const headerHeight = document.querySelector("header").offsetHeight;
+    const extraOffset = isSafari ? 30 : 130; // Ajuste maior para Safari
+
+    const sectionPosition = section.offsetTop - headerHeight + extraOffset;
+
+    window.scrollTo({
+      top: sectionPosition,
+      behavior: "smooth",
+    });
+
+    setActiveSection(id); // Define o item como ativo
+    setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setActiveSection(null); // Remove o item ativo ao rolar a página
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -38,8 +54,8 @@ const Header = React.memo(() => {
           transition={{ duration: 0.5 }}
           style={{
             background: isSafari
-              ? 'linear-gradient(135deg, #0A2D62 0%, #0A2D62 50%, rgba(10,45,98,0.8) 100%)'
-              : 'transparent',
+              ? "linear-gradient(135deg, #0A2D62 0%, #0A2D62 50%, rgba(10,45,98,0.8) 100%)"
+              : "transparent",
           }}
         >
           <div className="flex items-center">
@@ -51,13 +67,13 @@ const Header = React.memo(() => {
               <p className="text-lg mt-2">
                 <TypeAnimation
                   sequence={[
-                    'Desenvolvedor FullStack',
+                    "Desenvolvedor FullStack",
                     1000,
-                    'Freelancer',
+                    "Freelancer",
                     1000,
-                    'Cientista de Dados',
+                    "Cientista de Dados",
                     1000,
-                    'Pesquisador Científico',
+                    "Pesquisador Científico",
                     1000,
                   ]}
                   wrapper="span"
@@ -69,54 +85,34 @@ const Header = React.memo(() => {
           </div>
           <nav className="hidden md:flex" aria-label="Main Navigation">
             <ul className="flex space-x-8">
-              <li>
-                <button
-                  onClick={() => scrollToSection("about-me")}
-                  className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Sobre Mim"
-                >
-                  Sobre
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("skills")}
-                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Skills"
-                >
-                  Skills
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("education")}
-                  className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Educação"
-                >
-                  Educação
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("projects")}
-                  className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left`}
-                  aria-label="Projetos"
-                >
-                  Projetos
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left mr-4`}
-                  aria-label="Contato"
-                >
-                  Contato
-                </button>
-              </li>
+              {["about-me", "skills", "education", "projects", "contact"].map(
+                (section) => (
+                  <li key={section}>
+                    <button
+                      onClick={() => scrollToSection(section)}
+                      className={`relative text-2xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left ${
+                        activeSection === section
+                          ? "text-neonBlue after:scale-x-100 after:shadow-neon"
+                          : ""
+                      }`}
+                      aria-label={section}
+                    >
+                      {section === "about-me" && "Sobre"}
+                      {section === "skills" && "Skills"}
+                      {section === "education" && "Educação"}
+                      {section === "projects" && "Projetos"}
+                      {section === "contact" && "Contato"}
+                    </button>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle Menu">
+          <button
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
             {isMenuOpen ? (
               <svg
                 className="w-8 h-8"
@@ -157,7 +153,7 @@ const Header = React.memo(() => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                style={{ backgroundColor: 'transparent' }}
+                style={{ backgroundColor: "transparent" }}
               >
                 <button
                   className="absolute top-4 right-4"
@@ -180,42 +176,31 @@ const Header = React.memo(() => {
                   </svg>
                 </button>
                 <ul className="space-y-4 text-2xl">
-                  <li>
-                    <button
-                      onClick={() => scrollToSection("about-me")}
-                      className={`relative text-2xl ${activeSection === "about-me" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Sobre Mim"
-                    >
-                      Sobre Mim
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => scrollToSection("projects")}
-                      className={`relative text-2xl ${activeSection === "projects" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Projetos"
-                    >
-                      Projetos
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => scrollToSection("skills")}
-                      className={`relative text-2xl ${activeSection === "skills" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Habilidades"
-                    >
-                      Habilidades
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => scrollToSection("contact")}
-                      className={`relative text-2xl ${activeSection === "contact" ? 'text-neonBlue after:scale-x-100' : 'hover:text-neonBlue after:scale-x-0'} hover:after:scale-x-100 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:transition-transform after:duration-300 after:origin-left text-left`}
-                      aria-label="Contato"
-                    >
-                      Contato
-                    </button>
-                  </li>
+                  {[
+                    "about-me",
+                    "skills",
+                    "education",
+                    "projects",
+                    "contact",
+                  ].map((section) => (
+                    <li key={section}>
+                      <button
+                        onClick={() => scrollToSection(section)}
+                        className={`relative text-2xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left text-left ${
+                          activeSection === section
+                            ? "text-neonBlue after:scale-x-100 after:shadow-neon"
+                            : ""
+                        }`}
+                        aria-label={section}
+                      >
+                        {section === "about-me" && "Sobre"}
+                        {section === "skills" && "Skills"}
+                        {section === "education" && "Educação"}
+                        {section === "projects" && "Projetos"}
+                        {section === "contact" && "Contato"}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </Motion.div>
             )}

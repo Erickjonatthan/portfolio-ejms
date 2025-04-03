@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import useDocumentTitle from "../hooks/useDocumentTitle";
 import Footer from "../components/Footer";
 import AboutMe from "../components/AboutMe";
 import Projects from "../components/Projects";
@@ -10,8 +9,6 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import backgroundImage from "../assets/fundo.png"; 
 
 export default function Home() {
-  useDocumentTitle("Home Page");
-
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
@@ -42,7 +39,6 @@ export default function Home() {
           <AboutMe />
           <Skills />
           <Projects />
-
           <Contact />
         </main>
         <Footer />

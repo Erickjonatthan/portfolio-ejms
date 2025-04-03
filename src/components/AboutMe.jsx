@@ -1,16 +1,30 @@
-import React, { useRef } from 'react';
-import { motion as Motion, useInView } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion as Motion } from 'framer-motion';
 import profilePicture from "../assets/profile.jpg";
 
 export default function AboutMe() {
   const ref = useRef(null);
-  const isInView = useInView(ref);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        setIsInView(isVisible);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Verifica no carregamento inicial
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Motion.section
       ref={ref}
       id="about-me"
-      className="w-full p-8 my-4 text-white flex flex-col items-center"
+      className="w-full min-h-screen justify-center text-white flex flex-col items-center px-8" // Adicionado px-4
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
