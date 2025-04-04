@@ -30,7 +30,7 @@ export default function AboutMe() {
     >
       <div className="flex flex-col md:flex-row items-center text-center md:text-left max-w-4xl">
         <div className="flex-1 mb-6 md:mb-0">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
             Quem é <span className="text-white hover:text-blue-600 transition-colors duration-300">Erick</span>?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify">
