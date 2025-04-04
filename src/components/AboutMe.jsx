@@ -4,6 +4,7 @@ import { motion as Motion } from 'framer-motion';
 export default function AboutMe() {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
+  const [isNameHighlighted, setIsNameHighlighted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,17 @@ export default function AboutMe() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isInView) {
+      setIsNameHighlighted(true);
+      const timeout = setTimeout(() => {
+        setIsNameHighlighted(false);
+      }, 1000); // 1000ms = 1 segundo
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isInView]);
+
   return (
     <Motion.section
       ref={ref}
@@ -31,7 +43,7 @@ export default function AboutMe() {
       <div className="flex flex-col md:flex-row items-center text-center md:text-left max-w-4xl">
         <div className="flex-1 mb-6 md:mb-0">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Quem é <span className="text-white hover:text-blue-600 transition-colors duration-300">Erick</span>?
+            Quem é <span className={`text-white ${isNameHighlighted ? 'text-blue-600' : 'hover:text-blue-600'} transition-colors duration-300`}>Erick</span>?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify">
           Estudante de Engenharia da Computação e formado em Técnico em Informática para Internet, com uma forte paixão por desenvolvimento FullStack. Possui um grande interesse em participar de competições e maratonas de programação, além de se engajar em projetos de iniciação científica. Está sempre buscando aprimorar as suas habilidades através de eventos e cursos de programação, que ajudam a mante-lo atualizado nesse mundo da tecnologia.
