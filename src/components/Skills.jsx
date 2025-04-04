@@ -26,7 +26,7 @@ export default function Skills() {
         {/* Lado esquerdo: Título, descrição e animação Lottie */}
         <div className="md:w-1/3 text-center md:text-left mb-8 md:mb-0 flex flex-col items-center md:items-start">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Minhas Skills</h2>
-          <p className="text-lg mb-4 text-justify">
+          <p className="text-xl mb-4">
             Estas são as principais tecnologias e ferramentas que utilizo para criar soluções inovadoras. 
             Meu foco está em desenvolvimento web, mobile e design de interfaces, sempre buscando entregar 
             qualidade e eficiência em cada projeto.
@@ -46,7 +46,7 @@ export default function Skills() {
             <h3 className="text-2xl font-semibold mb-2 flex items-center">
               <i className="fas fa-code mr-2"></i> Desenvolvimento Web
             </h3>
-            <p>
+            <p className="text-lg">
               <strong>Front End:</strong>
             </p>
             <div className="flex flex-wrap">
@@ -57,7 +57,7 @@ export default function Skills() {
               <TechnologyBadge src="https://img.shields.io/badge/-Bootstrap-563D7C?&logo=bootstrap&logoColor=white" alt="Bootstrap" />
               <TechnologyBadge src="https://img.shields.io/badge/-TailwindCSS-38B2AC?&logo=tailwind-css&logoColor=white" alt="TailwindCSS" />
             </div>
-            <p className="mt-4">
+            <p className="text-lg">
               <strong>Back End:</strong>
             </p>
             <div className="flex flex-wrap">

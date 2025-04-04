@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion as Motion } from 'framer-motion';
+import React, { useRef, useEffect, useState } from "react";
+import { motion as Motion } from "framer-motion";
 
 export default function AboutMe() {
   const ref = useRef(null);
@@ -43,13 +43,26 @@ export default function AboutMe() {
       <div className="flex flex-col md:flex-row items-center text-center md:text-left max-w-4xl">
         <div className="flex-1 mb-6 md:mb-0">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Quem é <span className={`text-white ${isNameHighlighted ? 'text-blue-600' : 'hover:text-blue-600'} transition-colors duration-300`}>Erick</span>?
+            Quem é{" "}
+            <span
+              className={`text-white ${
+                isNameHighlighted ? "text-blue-600" : "hover:text-blue-600"
+              } transition-colors duration-300`}
+            >
+              Erick
+            </span>
+            ?
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify">
-          Estudante de Engenharia da Computação e formado em Técnico em Informática para Internet, com uma forte paixão por desenvolvimento FullStack. Possui um grande interesse em participar de competições e maratonas de programação, além de se engajar em projetos de iniciação científica. Está sempre buscando aprimorar as suas habilidades através de eventos e cursos de programação, que ajudam a mante-lo atualizado nesse mundo da tecnologia.
+          <p className="text-xl mb-4">
+            Estudante de Engenharia da Computação e Técnico em Informática, com
+            paixão por desenvolvimento FullStack. Interessado em competições de
+            programação e projetos de iniciação científica. Aprimora
+            constantemente suas habilidades com eventos e cursos de programação.
           </p>
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify mt-4">
-            Erick é um profissional apaixonado por tecnologia, sempre em busca de projetos Freelancer que não apenas contribuam para a sociedade, mas também proporcionem oportunidades de aprendizado prático e desafiador. Se você procura alguém dedicado, inovador e comprometido em entregar soluções sofisticadas, entre em contato e transforme suas ideias em realidade!
+          <p className="text-xl mb-4">
+            Profissional dedicado e inovador, busca projetos Freelancer que
+            contribuam e desafiem. Transforme suas ideias em realidade com um
+            especialista em soluções sofisticadas!
           </p>
         </div>
         <div className="flex-shrink-0 md:ml-28">

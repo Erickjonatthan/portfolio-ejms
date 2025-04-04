@@ -186,7 +186,7 @@ const Header = React.memo(() => {
                     <li key={section}>
                       <button
                         onClick={() => scrollToSection(section)}
-                        className={`relative text-2xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left text-left ${
+                        className={`relative text-3xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left text-left ${
                           activeSection === section
                             ? "text-neonBlue after:scale-x-100 after:shadow-neon"
                             : ""
