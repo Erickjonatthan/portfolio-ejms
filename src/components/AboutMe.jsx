@@ -4,7 +4,6 @@ import { motion as Motion } from "framer-motion";
 export default function AboutMe() {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
-  const [isNameHighlighted, setIsNameHighlighted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,22 +19,11 @@ export default function AboutMe() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isInView) {
-      setIsNameHighlighted(true);
-      const timeout = setTimeout(() => {
-        setIsNameHighlighted(false);
-      }, 1000); // 1000ms = 1 segundo
-
-      return () => clearTimeout(timeout);
-    }
-  }, [isInView]);
-
   return (
     <Motion.section
       ref={ref}
       id="about-me"
-      className="w-full min-h-screen justify-center text-white flex flex-col items-center px-8" // Adicionado px-4
+      className="w-full min-h-screen justify-center text-white flex flex-col items-center px-8"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -45,9 +33,7 @@ export default function AboutMe() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
             Quem é{" "}
             <span
-              className={`text-white ${
-                isNameHighlighted ? "text-blue-600" : "hover:text-blue-600"
-              } transition-colors duration-300`}
+              className="text-white hover:text-blue-600 transition-colors duration-300"
             >
               Erick
             </span>
