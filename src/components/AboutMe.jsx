@@ -53,13 +53,13 @@ export default function AboutMe() {
             </span>
             ?
           </h2>
-          <p className="text-xl mb-4 text-justify">
+          <p className="text-lg mb-4 text-justify">
             Estudante de Engenharia da Computação e Técnico em Informática, com
             paixão por desenvolvimento FullStack. Interessado em competições de
             programação e projetos de iniciação científica. Aprimora
             constantemente suas habilidades com eventos e cursos de programação.
           </p>
-          <p className="text-xl mb-4 text-justify">
+          <p className="text-lg mb-4 text-justify">
             Profissional dedicado e inovador, busca projetos Freelancer que
             contribuam e desafiem. Transforme suas ideias em realidade com um
             especialista em soluções sofisticadas!
