@@ -25,7 +25,7 @@ export default function Skills() {
       <div className="flex flex-col md:flex-row items-center md:items-start md:gap-x-8">
         {/* Lado esquerdo: Título, descrição e animação Lottie */}
         <div className="md:w-1/3 text-center md:text-left mb-8 md:mb-0 flex flex-col items-center md:items-start">
-          <h2 className="text-4xl font-bold mb-4">Minhas Skills</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Minhas Skills</h2>
           <p className="text-lg mb-4">
             Estas são as principais tecnologias e ferramentas que utilizo para criar soluções inovadoras. 
             Meu foco está em desenvolvimento web, mobile e design de interfaces, sempre buscando entregar 
