@@ -34,7 +34,7 @@ export default function AboutMe() {
             Quem é <span className="text-white hover:text-blue-600 transition-colors duration-300">Erick</span>?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify">
-          Estudante de Engenharia da Computação e formado em Técnico em Informática para Internet, com uma forte paixão por desenvolvimento Full Stack. Possui um grande interesse em participar de competições e maratonas de programação, além de se engajar em projetos de iniciação científica. Está sempre buscando aprimorar as suas habilidades através de eventos e cursos de programação, que ajudam a mante-lo atualizado nesse mundo da tecnologia.
+          Estudante de Engenharia da Computação e formado em Técnico em Informática para Internet, com uma forte paixão por desenvolvimento FullStack. Possui um grande interesse em participar de competições e maratonas de programação, além de se engajar em projetos de iniciação científica. Está sempre buscando aprimorar as suas habilidades através de eventos e cursos de programação, que ajudam a mante-lo atualizado nesse mundo da tecnologia.
           </p>
           <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-justify mt-4">
             Erick é um profissional apaixonado por tecnologia, sempre em busca de projetos Freelancer que não apenas contribuam para a sociedade, mas também proporcionem oportunidades de aprendizado prático e desafiador. Se você procura alguém dedicado, inovador e comprometido em entregar soluções sofisticadas, entre em contato e transforme suas ideias em realidade!
