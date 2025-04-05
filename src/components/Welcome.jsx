@@ -38,6 +38,7 @@ export default function Welcome() {
         style={{
           marginTop: "20px", // Espaçamento maior entre a foto e o botão
           marginLeft: "20px", // Alinha o botão à esquerda, na mesma distância do texto
+          marginBottom: "30px",
           background: "linear-gradient(90deg, #1E88E5, #42A5F5)",
           color: "#fff",
           fontWeight: "bold",
