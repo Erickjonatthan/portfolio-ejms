@@ -36,7 +36,7 @@ export default function AboutMe() {
     <Motion.section
       ref={ref}
       id="about-me"
-      className="w-full min-h-screen justify-center text-white flex flex-col items-center px-8"
+      className="w-full min-h-screen justify-center text-white flex flex-col items-center px-8 sm:mt-12"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
