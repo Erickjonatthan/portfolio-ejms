@@ -36,7 +36,7 @@ export default function Welcome() {
         onClick={() => scrollToSection("about-me")}
         className="px-6 py-3 shadow-lg transition-transform transform hover:scale-110 hover:shadow-blue-500/50 mx-auto"
         style={{
-          marginTop: "30px", // Espaçamento maior entre a foto e o botão
+          marginTop: "20px", // Espaçamento maior entre a foto e o botão
           marginLeft: "20px", // Alinha o botão à esquerda, na mesma distância do texto
           background: "linear-gradient(90deg, #1E88E5, #42A5F5)",
           color: "#fff",
