@@ -26,7 +26,7 @@ export default function AboutMe() {
   const scrollToSection = (id) => {
       const section = document.getElementById(id);
       if (section) {
-        const yOffset = -50; // Ajuste o valor para o deslocamento desejado
+        const yOffset = -45; // Ajuste o valor para o deslocamento desejado
         const yPosition = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: yPosition, behavior: "smooth" });
       }
@@ -68,7 +68,7 @@ export default function AboutMe() {
             <span className="text-neonBlue font-bold">Email:</span> erick.jonathan@ufrpe.br
           </p>
           {/* Ícones de redes sociais */}
-          <div className="flex items-center space-x-2 mt-6"> {/* Reduzido o espaçamento entre os ícones */}
+          <div className="flex items-center space-x-2 mt-6 mb-6"> {/* Reduzido o espaçamento entre os ícones */}
             <a
               href="https://www.linkedin.com/in/ericksantos"
               target="_blank"
