@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { useSafariCheck } from "../hooks/useSafariCheck";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
+import { useScrollToSection } from "../hooks/useScrollToSection";
+import { useSafariCheck } from "../hooks/useSafariCheck";
 
 const Header = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,21 +11,7 @@ const Header = React.memo(() => {
   const isSafari = useSafariCheck();
   const isVisible = useScrollVisibility(isSafari);
 
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    const headerHeight = document.querySelector("header").offsetHeight;
-    const extraOffset = isSafari ? 30 : 130; // Ajuste maior para Safari
-
-    const sectionPosition = section.offsetTop - headerHeight + extraOffset;
-
-    window.scrollTo({
-      top: sectionPosition,
-      behavior: "smooth",
-    });
-
-    setActiveSection(id); // Define o item como ativo
-    setIsMenuOpen(false);
-  };
+  const scrollToSection = useScrollToSection(isSafari);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -185,7 +172,10 @@ const Header = React.memo(() => {
                   ].map((section) => (
                     <li key={section}>
                       <button
-                        onClick={() => scrollToSection(section)}
+                        onClick={() => {
+                          scrollToSection(section);
+                          setIsMenuOpen(false); // Fecha o menu ao clicar
+                        }}
                         className={`relative text-2xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left text-left ${
                           activeSection === section
                             ? "text-neonBlue after:scale-x-100 after:shadow-neon"
