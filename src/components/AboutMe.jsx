@@ -26,7 +26,7 @@ export default function AboutMe() {
   const scrollToSection = (id) => {
       const section = document.getElementById(id);
       if (section) {
-        const yOffset = -45; // Ajuste o valor para o deslocamento desejado
+        const yOffset = -40; // Ajuste o valor para o deslocamento desejado
         const yPosition = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: yPosition, behavior: "smooth" });
       }
