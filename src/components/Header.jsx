@@ -47,11 +47,11 @@ const Header = React.memo(() => {
         >
           <div className="flex items-center">
             <div>
-              <h1 className="text-5xl font-bold">
+              <h1 className="text-5xl md:text-4xl sm:text-4xl font-bold">
                 <span className="text-neonBlue">&lt;</span>ejms
                 <span className="text-neonBlue">/&gt;</span>
               </h1>
-              <p className="text-lg mt-2">
+              <p className="text-lg md:text-base sm:text-base mt-2">
                 <TypeAnimation
                   sequence={[
                     "Desenvolvedor FullStack",
