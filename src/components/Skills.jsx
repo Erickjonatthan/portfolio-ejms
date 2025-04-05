@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion as Motion } from "framer-motion"; // Importando o framer-motion
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline"; // Importando o ícone
@@ -16,6 +16,21 @@ const TechnologyBadge = ({ src, alt }) => (
 export default function Skills() {
   const ref = useRef(null);
   const isSafari = useSafariCheck(); // Verifica se o navegador é Safari
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        setIsInView(isVisible);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Verifica no carregamento inicial
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = useScrollToSection(isSafari);
 
@@ -25,7 +40,7 @@ export default function Skills() {
       ref={ref}
       className="w-full min-h-screen flex flex-col justify-center items-center p-8 text-white"
       initial={{ opacity: 0, y: 50 }} // Estado inicial (de baixo para cima)
-      whileInView={{ opacity: 1, y: 0 }} // Estado ao entrar na visualização
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} // Estado ao entrar na visualização
       transition={{ duration: 0.8, ease: "easeInOut" }} // Configuração da transição
       viewport={{ once: false, amount: 0.2 }} // Configuração do comportamento de visualização
     >
