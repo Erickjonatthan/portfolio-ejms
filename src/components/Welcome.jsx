@@ -9,7 +9,7 @@ export default function Welcome() {
 
   return (
     <div className="flex flex-col justify-center h-full pl-4">
-      <h1 className="text-left text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:leading-snug font-bold text-white p-5 leading-snug sm:leading-normal md:leading-snug pt-28">
+      <h1 className="text-left text-3xl sm:text-3xl md:text-3xl lg:text-5xl lg:leading-snug font-bold text-white p-5 leading-snug sm:leading-normal md:leading-snug pt-28">
         Converto{" "}
         <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">
           desafios
