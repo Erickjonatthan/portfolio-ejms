@@ -47,11 +47,11 @@ const Header = React.memo(() => {
         >
           <div className="flex items-center">
             <div>
-              <h1 className="text-5xl md:text-4xl sm:text-4xl font-bold">
+              <h1 className="text-5xl lg:text-5xl sm:text-4xl font-bold">
                 <span className="text-neonBlue">&lt;</span>ejms
                 <span className="text-neonBlue">/&gt;</span>
               </h1>
-              <p className="text-lg md:text-base sm:text-base mt-2">
+              <p className=" text-xl lg:text-lg sm:text-base mt-2">
                 <TypeAnimation
                   sequence={[
                     "Desenvolvedor FullStack",
@@ -77,7 +77,7 @@ const Header = React.memo(() => {
                   <li key={section}>
                     <button
                       onClick={() => scrollToSection(section)}
-                      className={`relative text-2xl sm:text-xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left ${
+                      className={`relative text-2xl lg:text-2xl sm:text-xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left hover:text-shadow-neon text-left ${
                         activeSection === section
                           ? "text-neonBlue after:scale-x-100 after:shadow-neon"
                           : ""
