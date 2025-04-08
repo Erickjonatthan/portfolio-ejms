@@ -100,7 +100,7 @@ export default function Projects() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-base sm:text-lg transition-all duration-300 ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-base sm:text-lg transition-all duration-300 ${
                 activeCategory === category
                   ? 'bg-[#012286] text-white' // Cor do item selecionado
                   : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white' // Efeito de hover
