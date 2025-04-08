@@ -84,7 +84,7 @@ export default function Projects() {
     <Motion.section
       id="projects"
       ref={ref}
-      className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center"
+      className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:mt-10 sm:px-8"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}

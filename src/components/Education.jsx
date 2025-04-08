@@ -56,7 +56,7 @@ const certificates = [
         link: "https://www.datacamp.com/certificate/67890",
         date: "Setembro de 2023",
     },
-    
+
 ];
 
 const awards = [
@@ -95,7 +95,7 @@ export default function Education() {
     <Motion.section
       id="education"
       ref={ref}
-      className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center"
+      className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:px-8 sm:mt-10"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
