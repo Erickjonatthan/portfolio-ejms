@@ -95,12 +95,12 @@ export default function Projects() {
           Esses são os projetos que demonstram minhas habilidades em desenvolvimento e análise. Explore cada categoria para saber mais!
         </p>
         {/* Menu de Categorias */}
-        <div className="flex flex-row justify-center mb-6 space-x-2 sm:space-x-4 px-2">
+        <div className="flex flex-row justify-center mb-6 space-x-3.5 sm:space-x-4 px-2">
           {Object.keys(projectsData).map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-base sm:text-lg transition-all duration-300 ${
+              className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 ${
                 activeCategory === category
                   ? 'bg-[#012286] text-white' // Cor do item selecionado
                   : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white' // Efeito de hover
