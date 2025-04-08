@@ -6,6 +6,7 @@ import Skills from "../components/Skills";
 import Contact from "../components/Contact";
 import BackgroundVideo from "../components/BackgroundVideo";
 import ScrollToTopButton from "../components/ScrollToTopButton";
+import Education from "../components/Education";
 
 export default function Home() {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -37,6 +38,7 @@ export default function Home() {
         <main className="flex-grow flex flex-col items-center justify-center w-full">
           <AboutMe />
           <Skills />
+          <Education />
           <Projects />
           <Contact />
         </main>
