@@ -44,6 +44,19 @@ const certificates = [
     link: "https://www.figma.com/certificate/67890",
     date: "Novembro de 2023",
   },
+    {
+        title: "Desenvolvimento Mobile",
+        platform: "Udacity",
+        link: "https://www.udacity.com/certificate/12345",
+        date: "Outubro de 2023",
+    },
+    {
+        title: "Banco de Dados Avançado",
+        platform: "DataCamp",
+        link: "https://www.datacamp.com/certificate/67890",
+        date: "Setembro de 2023",
+    },
+
 ];
 
 const awards = [
@@ -82,7 +95,7 @@ export default function Education() {
     <Motion.section
       id="education"
       ref={ref}
-      className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center"
+      className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:px-8 sm:mt-10"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -169,7 +182,7 @@ export default function Education() {
         )}
 
         {activeTab === 'certificates' && (
-          <div className="overflow-y-auto max-h-64 space-y-4 px-6 pb-8">
+          <div className="overflow-y-auto max-h-[500px] space-y-4 px-6 pb-8">
             {certificates.map((cert, index) => (
               <div
                 key={index}
