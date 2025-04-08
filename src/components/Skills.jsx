@@ -2,8 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion as Motion } from "framer-motion"; // Importando o framer-motion
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline"; // Importando o ícone
-import { useScrollToSection } from "../hooks/useScrollToSection"; // Importando o hook de rolagem
-import { useSafariCheck } from "../hooks/useSafariCheck"; // Importando o hook de verificação do Safari
 
 const TechnologyBadge = ({ src, alt }) => (
   <img
@@ -15,7 +13,6 @@ const TechnologyBadge = ({ src, alt }) => (
 
 export default function Skills() {
   const ref = useRef(null);
-  const isSafari = useSafariCheck(); // Verifica se o navegador é Safari
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
@@ -32,8 +29,15 @@ export default function Skills() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = useScrollToSection(isSafari);
-
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      const yOffset = -40; // Ajuste o valor para o deslocamento desejado
+      const yPosition =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: yPosition, behavior: "smooth" });
+    }
+  };
   return (
     <Motion.section
       id="skills"
