@@ -6,7 +6,6 @@ export default function Footer() {
     <footer className="w-full bg-gradient-to-r from-[#071532] to-[#012286] text-white py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          {/* Coluna da Esquerda - Versículo */}
           <div className="text-center md:text-left">
             <blockquote className="italic text-gray-300">
               "Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens."
@@ -14,7 +13,6 @@ export default function Footer() {
             <p className="text-sm text-gray-400 mt-2">- Colossenses 3:23</p>
           </div>
           
-          {/* Coluna da Direita - Links Sociais */}
           <div className="text-center md:text-right">
             <h3 className="text-xl font-semibold mb-4">Conecte-se</h3>
             <div className="flex justify-center md:justify-end space-x-4">
@@ -46,7 +44,6 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* Linha Divisória */}
         <div className="border-t border-gray-700 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-center md:text-left text-sm">
