@@ -34,12 +34,12 @@ export default function Contact() {
     <Motion.section
       ref={ref}
       id="contact"
-      className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4"
+      className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4 overflow-x-hidden"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
-      <div className="max-w-6xl w-full mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white mb-4">Entre em Contato</h2>
         <p className="text-white text-center text-base sm:text-xl mb-8">
           Vamos transformar suas ideias em realidade! Entre em contato comigo.
