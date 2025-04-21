@@ -1,27 +1,13 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { motion as Motion } from "framer-motion";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import Button from "@mui/material/Button"; // Botão do Material-UI
-import DownloadIcon from "@mui/icons-material/Download"; // Ícone de download
+import Button from "@mui/material/Button";
+import DownloadIcon from "@mui/icons-material/Download";
+import { useInView } from "../hooks/useInView";
 
 export default function AboutMe() {
-  const ref = useRef(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        setIsInView(isVisible);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Verifica no carregamento inicial
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [ref, isInView] = useInView();
 
   const scrollToSection = (id) => {
       const section = document.getElementById(id);

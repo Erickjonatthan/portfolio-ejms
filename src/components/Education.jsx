@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
-import { FaGraduationCap, FaCertificate, FaTrophy } from 'react-icons/fa'; // Importação dos ícones
+import { FaGraduationCap, FaCertificate, FaTrophy } from 'react-icons/fa';
+import { useInView } from '../hooks/useInView';
 
 const educationData = [
   {
@@ -74,27 +75,12 @@ const awards = [
 
 export default function Education() {
   const [activeTab, setActiveTab] = useState('education');
-  const [isInView, setIsInView] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        setIsInView(isVisible);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [ref, isInView] = useInView();
 
   return (
     <Motion.section
-      id="education"
       ref={ref}
+      id="education"
       className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:px-8 sm:mt-10"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}

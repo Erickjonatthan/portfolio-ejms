@@ -1,30 +1,16 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { useInView } from '../hooks/useInView';
 
 export default function Contact() {
-  const ref = useRef(null);
-  const [isInView, setIsInView] = useState(false);
+  const [ref, isInView] = useInView();
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
     assunto: '',
     mensagem: ''
   });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        setIsInView(isVisible);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
