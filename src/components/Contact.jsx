@@ -39,7 +39,7 @@ export default function Contact() {
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl w-full mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white mb-4">Entre em Contato</h2>
         <p className="text-white text-center text-base sm:text-xl mb-8">
           Vamos transformar suas ideias em realidade! Entre em contato comigo.
