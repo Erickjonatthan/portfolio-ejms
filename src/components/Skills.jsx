@@ -1,6 +1,6 @@
-import { motion as Motion } from "framer-motion"; // Importando o framer-motion
+import { motion as Motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import SchoolIcon from "@mui/icons-material/School"; // Importando o ícone
+import SchoolIcon from "@mui/icons-material/School";
 import { useInView } from '../hooks/useInView';
 
 const TechnologyBadge = ({ src, alt }) => (
@@ -27,7 +27,11 @@ export default function Skills() {
     <Motion.section
       ref={ref}
       id="skills"
+      role="region"
+      aria-label="Minhas Habilidades Técnicas"
       className="w-full min-h-screen flex flex-col justify-center items-center p-8 text-white"
+      itemScope
+      itemType="https://schema.org/ItemList"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -36,14 +40,15 @@ export default function Skills() {
       <div className="flex flex-col md:flex-row items-center md:items-start md:gap-x-8">
         {/* Lado esquerdo: Título, descrição e animação Lottie */}
         <div className="md:w-1/3 text-center md:text-left mb-8 md:mb-0 flex flex-col items-center md:items-start">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Minhas Skills
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" itemProp="name">
+            Minhas Habilidades Técnicas
           </h2>
-          <p className="text-lg mb-4 text-justify">
+          <p className="text-lg mb-4 text-justify" itemProp="description">
             Estas são as principais tecnologias e ferramentas que utilizo para
-            criar soluções inovadoras. Meu foco está em desenvolvimento web,
-            mobile e design de interfaces, sempre buscando entregar qualidade e
-            eficiência em cada projeto.
+            criar soluções inovadoras. Especializado em desenvolvimento web,
+            mobile e design de interfaces, com foco em qualidade e
+            eficiência em cada projeto. Minhas habilidades abrangem desde front-end
+            até back-end, incluindo bancos de dados e UI/UX.
           </p>
           <DotLottieReact
             src="/assets/tec.lottie"
@@ -53,12 +58,17 @@ export default function Skills() {
           />
         </div>
 
-        {/* Lado direito: Skills */}
         <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Desenvolvimento Web */}
-          <div className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow">
-            <h3 className="text-2xl font-semibold mb-2 flex items-center">
-              <i className="fas fa-code mr-2"></i> Desenvolvimento Web
+          <div 
+            className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow"
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+            role="article"
+            aria-labelledby="web-dev-title"
+          >
+            <h3 id="web-dev-title" className="text-2xl font-semibold mb-2 flex items-center" itemProp="name">
+              <i className="fas fa-code mr-2" aria-hidden="true"></i> Desenvolvimento Web
             </h3>
             <p className="text-lg">
               <strong>Front End:</strong>
@@ -120,10 +130,16 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Desenvolvimento Mobile */}
-          <div className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow">
-            <h3 className="text-2xl font-semibold mb-4 flex items-center">
-              <i className="fas fa-mobile-alt mr-2"></i> Desenvolvimento Mobile
+          <div 
+            className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow"
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+            role="article"
+            aria-labelledby="mobile-dev-title"
+          >
+            <h3 id="mobile-dev-title" className="text-2xl font-semibold mb-4 flex items-center" itemProp="name">
+              <i className="fas fa-mobile-alt mr-2" aria-hidden="true"></i> Desenvolvimento Mobile
             </h3>
             <div className="flex flex-wrap">
               <TechnologyBadge
@@ -149,10 +165,16 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Banco de Dados */}
-          <div className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow">
-            <h3 className="text-2xl font-semibold mb-4 flex items-center">
-              <i className="fas fa-database mr-2"></i> Banco de Dados
+          <div 
+            className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow"
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+            role="article"
+            aria-labelledby="database-title"
+          >
+            <h3 id="database-title" className="text-2xl font-semibold mb-4 flex items-center" itemProp="name">
+              <i className="fas fa-database mr-2" aria-hidden="true"></i> Banco de Dados
             </h3>
             <div className="flex flex-wrap">
               <TechnologyBadge
@@ -170,10 +192,17 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* UI/UX */}
-          <div className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow">
-            <h3 className="text-2xl font-semibold mb-4 flex items-center">
-              <i className="fas fa-paint-brush mr-2"></i> UI/UX
+
+          <div 
+            className="p-4 border border-blue-300 rounded-md shadow-md hover:shadow-lg transition-shadow"
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+            role="article"
+            aria-labelledby="uiux-title"
+          >
+            <h3 id="uiux-title" className="text-2xl font-semibold mb-4 flex items-center" itemProp="name">
+              <i className="fas fa-paint-brush mr-2" aria-hidden="true"></i> UI/UX
             </h3>
             <div className="flex flex-wrap">
               <TechnologyBadge
@@ -189,7 +218,6 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Botão de ação */}
       <div className="text-center mt-8">
         <button
           onClick={() => scrollToSection("education")}
