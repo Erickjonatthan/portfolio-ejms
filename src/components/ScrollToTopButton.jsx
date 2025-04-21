@@ -1,6 +1,4 @@
-import React from "react";
-
-const ScrollToTopButton = React.memo(({ show }) => {
+export default function ScrollToTopButton({ show }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -28,6 +26,4 @@ const ScrollToTopButton = React.memo(({ show }) => {
       </svg>
     </button>
   );
-});
-
-export default ScrollToTopButton;
+}

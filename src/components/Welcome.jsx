@@ -1,11 +1,9 @@
 import React from "react";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"; // Importando a seta do Material-UI
-import { useSafariCheck } from "../hooks/useSafariCheck";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { useScrollToSection } from "../hooks/useScrollToSection";
 
 export default function Welcome() {
-  const isSafari = useSafariCheck();
-  const scrollToSection = useScrollToSection(isSafari);
+  const scrollToSection = useScrollToSection();
 
   return (
     <div className="flex flex-col justify-center h-full pl-4 sm:mt-12">

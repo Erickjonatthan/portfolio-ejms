@@ -3,19 +3,16 @@ import { motion as Motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
 import { useScrollToSection } from "../hooks/useScrollToSection";
-import { useSafariCheck } from "../hooks/useSafariCheck";
 
-const Header = React.memo(() => {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(null); // Estado para rastrear o item ativo
-  const isSafari = useSafariCheck();
-  const isVisible = useScrollVisibility(isSafari);
-
-  const scrollToSection = useScrollToSection(isSafari);
+  const [activeSection, setActiveSection] = useState(null);
+  const isVisible = useScrollVisibility();
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     const handleScroll = () => {
-      setActiveSection(null); // Remove o item ativo ao rolar a página
+      setActiveSection(null);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -23,11 +20,7 @@ const Header = React.memo(() => {
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
   }, [isMenuOpen]);
 
   return (
@@ -39,11 +32,7 @@ const Header = React.memo(() => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          style={{
-            background: isSafari
-              ? "linear-gradient(135deg, #0A2D62 0%, #0A2D62 50%, rgba(10,45,98,0.8) 100%)"
-              : "transparent",
-          }}
+          style={{ background: "transparent" }}
         >
           <div className="flex items-center">
             <div>
@@ -51,7 +40,7 @@ const Header = React.memo(() => {
                 <span className="text-neonBlue">&lt;</span>ejms
                 <span className="text-neonBlue">/&gt;</span>
               </h1>
-              <p className=" text-xl lg:text-lg sm:text-base mt-2">
+              <p className="text-xl lg:text-lg sm:text-base mt-2">
                 <TypeAnimation
                   sequence={[
                     "Desenvolvedor FullStack",
@@ -70,6 +59,7 @@ const Header = React.memo(() => {
               </p>
             </div>
           </div>
+
           <nav className="hidden md:flex" aria-label="Main Navigation">
             <ul className="flex space-x-8">
               {["about-me", "skills", "education", "projects", "contact"].map(
@@ -95,6 +85,7 @@ const Header = React.memo(() => {
               )}
             </ul>
           </nav>
+
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -113,7 +104,7 @@ const Header = React.memo(() => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
-                ></path>
+                />
               </svg>
             ) : (
               <svg
@@ -128,10 +119,11 @@ const Header = React.memo(() => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h16m-7 6h7"
-                ></path>
+                />
               </svg>
             )}
           </button>
+
           <AnimatePresence>
             {isMenuOpen && (
               <Motion.div
@@ -159,38 +151,34 @@ const Header = React.memo(() => {
                       strokeLinejoin="round"
                       strokeWidth="2"
                       d="M6 18L18 6M6 6l12 12"
-                    ></path>
+                    />
                   </svg>
                 </button>
                 <ul className="space-y-4 text-2xl">
-                  {[
-                    "about-me",
-                    "skills",
-                    "education",
-                    "projects",
-                    "contact",
-                  ].map((section) => (
-                    <li key={section}>
-                      <button
-                        onClick={() => {
-                          scrollToSection(section);
-                          setIsMenuOpen(false); // Fecha o menu ao clicar
-                        }}
-                        className={`relative text-2xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left text-left ${
-                          activeSection === section
-                            ? "text-neonBlue after:scale-x-100 after:shadow-neon"
-                            : ""
-                        }`}
-                        aria-label={section}
-                      >
-                        {section === "about-me" && "Sobre"}
-                        {section === "skills" && "Skills"}
-                        {section === "education" && "Educação"}
-                        {section === "projects" && "Projetos"}
-                        {section === "contact" && "Contato"}
-                      </button>
-                    </li>
-                  ))}
+                  {["about-me", "skills", "education", "projects", "contact"].map(
+                    (section) => (
+                      <li key={section}>
+                        <button
+                          onClick={() => {
+                            scrollToSection(section);
+                            setIsMenuOpen(false);
+                          }}
+                          className={`relative text-2xl hover:text-neonBlue hover:after:scale-x-100 hover:after:shadow-neon after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-neonBlue after:bottom-0 after:left-0 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left text-left ${
+                            activeSection === section
+                              ? "text-neonBlue after:scale-x-100 after:shadow-neon"
+                              : ""
+                          }`}
+                          aria-label={section}
+                        >
+                          {section === "about-me" && "Sobre"}
+                          {section === "skills" && "Skills"}
+                          {section === "education" && "Educação"}
+                          {section === "projects" && "Projetos"}
+                          {section === "contact" && "Contato"}
+                        </button>
+                      </li>
+                    )
+                  )}
                 </ul>
               </Motion.div>
             )}
@@ -199,6 +187,4 @@ const Header = React.memo(() => {
       )}
     </AnimatePresence>
   );
-});
-
-export default Header;
+}
