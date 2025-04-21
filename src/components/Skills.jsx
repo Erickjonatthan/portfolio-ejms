@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion as Motion } from "framer-motion"; // Importando o framer-motion
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import WorkOutlineIcon from "@mui/icons-material/WorkOutline"; // Importando o ícone
+import SchoolIcon from "@mui/icons-material/School"; // Importando o ícone
 
 const TechnologyBadge = ({ src, alt }) => (
   <img
@@ -207,7 +207,7 @@ export default function Skills() {
       {/* Botão de ação */}
       <div className="text-center mt-8">
         <button
-          onClick={() => scrollToSection("projects")}
+          onClick={() => scrollToSection("education")}
           className="px-6 py-3 shadow-lg transition-transform transform hover:scale-110 mx-auto flex items-center justify-center gap-2"
           style={{
             background: "linear-gradient(90deg, #1E88E5, #42A5F5)", // Gradiente azul
@@ -220,8 +220,8 @@ export default function Skills() {
             textAlign: "center", // Centraliza o texto
           }}
         >
-          <WorkOutlineIcon /> {/* Ícone ao lado do texto */}
-          Projetos
+          <SchoolIcon/>
+          Educação
         </button>
       </div>
     </Motion.section>

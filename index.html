@@ -7,25 +7,14 @@
     <title>Erick Santos | Portfólio </title>
     <!-- iOS Safari -->
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Erick Santos">
     <!-- Android Chrome -->
     <meta name="theme-color" content="#000000">
-    <style>
-      body.loading {
-        background-color: #000000; /* Fundo preto enquanto carrega */
-      }
-    </style>
   </head>
-  <body class="loading">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // Remove a classe "loading" após o carregamento da página
-      window.addEventListener('load', () => {
-        document.body.classList.remove('loading');
-        document.body.style.backgroundColor = '#1A64A4'; // Cor azul após o carregamento
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1A64A4');
-      });
-    </script>
   </body>
 </html>

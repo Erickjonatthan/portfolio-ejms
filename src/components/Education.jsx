@@ -107,38 +107,38 @@ export default function Education() {
         </p>
 
         {/* Menu de Categorias */}
-        <div className="flex flex-row justify-center mb-6 space-x-2 sm:space-x-4 px-2">
+        <div className="flex flex-row justify-center mb-6 space-x-1 sm:space-x-4 px-1 sm:px-2">
           <button
             onClick={() => setActiveTab('education')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-base sm:text-lg transition-all duration-300 flex items-center space-x-2 ${
+            className={`px-2 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 flex items-center space-x-1 sm:space-x-2 ${
               activeTab === 'education'
-                ? 'bg-[#012286] text-white' // Cor do item selecionado
-                : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white' // Efeito de hover
+                ? 'bg-[#012286] text-white'
+                : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white'
             }`}
           >
-            <FaGraduationCap className="text-lg sm:text-xl" />
+            <FaGraduationCap className="text-base sm:text-xl" />
             <span>Educação</span>
           </button>
           <button
             onClick={() => setActiveTab('certificates')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-base sm:text-lg transition-all duration-300 flex items-center space-x-2 ${
+            className={`px-2 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 flex items-center space-x-1 sm:space-x-2 ${
               activeTab === 'certificates'
-                ? 'bg-[#012286] text-white' // Cor do item selecionado
-                : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white' // Efeito de hover
+                ? 'bg-[#012286] text-white'
+                : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white'
             }`}
           >
-            <FaCertificate className="text-lg sm:text-xl" />
+            <FaCertificate className="text-base sm:text-xl" />
             <span>Certificados</span>
           </button>
           <button
             onClick={() => setActiveTab('awards')}
-            className={`px-3 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-base sm:text-lg transition-all duration-300 flex items-center space-x-2 ${
+            className={`px-2 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 flex items-center space-x-1 sm:space-x-2 ${
               activeTab === 'awards'
-                ? 'bg-[#012286] text-white' // Cor do item selecionado
-                : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white' // Efeito de hover
+                ? 'bg-[#012286] text-white'
+                : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white'
             }`}
           >
-            <FaTrophy className="text-lg sm:text-xl" />
+            <FaTrophy className="text-base sm:text-xl" />
             <span>Prêmios</span>
           </button>
         </div>
@@ -213,6 +213,32 @@ export default function Education() {
             ))}
           </div>
         )}
+
+        {/* Texto para projetos (agora visível em todas as categorias e alinhado à esquerda) */}
+        <Motion.div 
+          className="text-left mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <p className="text-white text-xl">
+            Gostou da minha formação?{" "}
+            <span 
+              className="hover:text-[#012286] cursor-pointer transition-all duration-300"
+              onClick={() => {
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                  const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+                  const yOffset = -headerHeight - 80; // Aumentei o offset para 80px
+                  const y = projectsSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+              }}
+            >
+              Conheça meus projetos!
+            </span>
+          </p>
+        </Motion.div>
       </div>
     </Motion.section>
   );

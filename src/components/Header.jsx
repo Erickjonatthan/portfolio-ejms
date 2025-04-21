@@ -3,15 +3,12 @@ import { motion as Motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
 import { useScrollToSection } from "../hooks/useScrollToSection";
-import { useSafariCheck } from "../hooks/useSafariCheck";
 
 const Header = React.memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(null); // Estado para rastrear o item ativo
-  const isSafari = useSafariCheck();
-  const isVisible = useScrollVisibility(isSafari);
-
-  const scrollToSection = useScrollToSection(isSafari);
+  const [activeSection, setActiveSection] = useState(null);
+  const isVisible = useScrollVisibility();
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,9 +37,7 @@ const Header = React.memo(() => {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
           style={{
-            background: isSafari
-              ? "linear-gradient(135deg, #0A2D62 0%, #0A2D62 50%, rgba(10,45,98,0.8) 100%)"
-              : "transparent",
+            background: "transparent"
           }}
         >
           <div className="flex items-center">

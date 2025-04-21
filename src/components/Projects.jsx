@@ -95,15 +95,15 @@ export default function Projects() {
           Esses são os projetos que demonstram minhas habilidades em desenvolvimento e análise. Explore cada categoria para saber mais!
         </p>
         {/* Menu de Categorias */}
-        <div className="flex flex-row justify-center mb-6 space-x-3.5 sm:space-x-4 px-2">
+        <div className="flex flex-row justify-center mb-6 space-x-2 sm:space-x-4 px-2">
           {Object.keys(projectsData).map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 ${
+              className={`px-2 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-[#012286] text-white' // Cor do item selecionado
-                  : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white' // Efeito de hover
+                  ? 'bg-[#012286] text-white'
+                  : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white'
               }`}
             >
               {category}
@@ -148,6 +148,45 @@ export default function Projects() {
             ))}
           </div>
         </div>
+
+        {/* Seção de chamada para contato renovada */}
+        <Motion.div 
+          className="text-center mt-12 bg-gradient-to-r from-[#071532] to-[#012286] p-8 rounded-2xl shadow-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Vamos transformar ideias em realidade?
+            </h3>
+            <p className="text-gray-200 text-lg mb-6">
+              Estou sempre em busca de novos desafios e parcerias interessantes. 
+              Se você tem um projeto em mente, adoraria ouvir sobre ele!
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="group relative px-8 py-3 bg-white text-[#012286] font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              >
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">Iniciar Conversa</span>
+                <div className="absolute inset-0 h-full w-0 bg-[#012286] rounded-lg transition-all duration-300 group-hover:w-full -z-0"></div>
+              </button>
+              <p className="text-gray-300 text-sm">ou</p>
+              <a
+                href="mailto:erick.jonathan@ufrpe.br"
+                className="px-8 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-[#012286] transition-all duration-300 transform hover:scale-105"
+              >
+                Enviar E-mail Direto
+              </a>
+            </div>
+          </div>
+        </Motion.div>
       </div>
     </Motion.section>
   );
