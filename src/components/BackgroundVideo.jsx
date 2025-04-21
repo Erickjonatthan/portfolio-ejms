@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Welcome from "./Welcome";
 
-const BackgroundVideo = React.memo(() => {
+export default function BackgroundVideo() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   useEffect(() => {
@@ -34,6 +34,4 @@ const BackgroundVideo = React.memo(() => {
       </div>
     </div>
   );
-});
-
-export default BackgroundVideo;
+}
