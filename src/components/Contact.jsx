@@ -41,45 +41,45 @@ export default function Contact() {
     >
       <div className="max-w-6xl w-full mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white mb-4">Entre em Contato</h2>
-        <p className="text-white text-center text-base sm:text-xl mb-12">
+        <p className="text-white text-center text-base sm:text-xl mb-8">
           Vamos transformar suas ideias em realidade! Entre em contato comigo.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <Motion.div
-            className="bg-white p-6 rounded-lg text-center shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            className="bg-white p-4 rounded-lg text-center shadow-md"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
           >
-            <FaEnvelope className="text-4xl text-blue-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Email</h3>
-            <p className="text-gray-600">erick.jonathan@ufrpe.br</p>
+            <FaEnvelope className="text-3xl text-blue-500 mx-auto mb-2" />
+            <h3 className="text-lg font-semibold text-gray-800 mb-1">Email</h3>
+            <p className="text-sm text-gray-600">erick.jonathan@ufrpe.br</p>
           </Motion.div>
 
           <Motion.div
-            className="bg-white p-6 rounded-lg text-center shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            className="bg-white p-4 rounded-lg text-center shadow-md"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
           >
-            <FaPhone className="text-4xl text-blue-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Telefone</h3>
-            <p className="text-gray-600">(81) 99999-9999</p>
+            <FaPhone className="text-3xl text-blue-500 mx-auto mb-2" />
+            <h3 className="text-lg font-semibold text-gray-800 mb-1">Telefone</h3>
+            <p className="text-sm text-gray-600">(81) 99999-9999</p>
           </Motion.div>
 
           <Motion.div
-            className="bg-white p-6 rounded-lg text-center shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            className="bg-white p-4 rounded-lg text-center shadow-md"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
           >
-            <FaMapMarkerAlt className="text-4xl text-blue-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Localização</h3>
-            <p className="text-gray-600">Recife, Pernambuco</p>
+            <FaMapMarkerAlt className="text-3xl text-blue-500 mx-auto mb-2" />
+            <h3 className="text-lg font-semibold text-gray-800 mb-1">Localização</h3>
+            <p className="text-sm text-gray-600">Recife, Pernambuco</p>
           </Motion.div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-xl p-8 w-full">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg shadow-xl p-6 w-full">
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Motion.div
                 className="flex flex-col"
                 initial={{ opacity: 0, x: -50 }}
@@ -151,9 +151,9 @@ export default function Contact() {
 
             <Motion.button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-bold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-blue-500 transition duration-300 transform hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-bold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-blue-500 transition duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Enviar Mensagem
             </Motion.button>
