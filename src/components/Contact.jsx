@@ -63,7 +63,7 @@ export default function Contact() {
           >
             <FaPhone className="text-3xl text-blue-500 mx-auto mb-2" />
             <h3 className="text-lg font-semibold text-gray-800 mb-1">Telefone</h3>
-            <p className="text-sm text-gray-600">(81) 99999-9999</p>
+            <p className="text-sm text-gray-600">(81) 98997-9429</p>
           </Motion.div>
 
           <Motion.div
@@ -73,7 +73,7 @@ export default function Contact() {
           >
             <FaMapMarkerAlt className="text-3xl text-blue-500 mx-auto mb-2" />
             <h3 className="text-lg font-semibold text-gray-800 mb-1">Localização</h3>
-            <p className="text-sm text-gray-600">Recife, Pernambuco</p>
+            <p className="text-sm text-gray-600">São Bento do Una, Pernambuco</p>
           </Motion.div>
         </div>
 

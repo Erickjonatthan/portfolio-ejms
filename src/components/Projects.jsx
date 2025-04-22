@@ -102,7 +102,7 @@ export default function Projects() {
         <div className="w-full max-w-5xl px-4 mx-auto">
           <h2 className="text-3xl text-white sm:text-4xl lg:text-5xl font-bold text-center mb-4" itemProp="name">Projetos</h2>
           <p className="text-gray-300 text-center text-base sm:text-xl mb-8" itemProp="description">
-            Esses são os projetos que demonstram minhas habilidades em desenvolvimento e análise. Explore cada categoria para saber mais!
+            Esses são os projetos que demonstram minha proficiência em diversas camadas de desenvolvimento. Explore cada categoria para saber mais!
           </p>
           <div className="flex flex-row justify-center mb-6 space-x-2 sm:space-x-4 px-2">
             {Object.keys(projectsData).map((category) => (
