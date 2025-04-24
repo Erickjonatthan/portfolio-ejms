@@ -17,7 +17,7 @@ export const projectsData = {
     {
       title: "Gerenciamento de Viagens",
       description: "API REST para controle de viagens com Docker e PostgreSQL. Implementação CRUD seguindo princípios SOLID e padrões de design.",
-      image: "https://via.placeholder.com/150",
+      image: "/assets/travel_icon.svg",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
