@@ -4,39 +4,39 @@ export const projectsData = {
   backend: [
     {
       title: "API REST - AlfaEduca",
-      description: "API REST em Spring Boot com autenticação JWT, serviço de email, e documentação Swagger. Utiliza PostgreSQL e Flyway para migrações, além de ser dockerizada para fácil deploy. Inclui recursos como reconhecimento de texto com Tesseract OCR, silabação de palavras e criação de atividades educacionais.",
+      description: "API Spring Boot com autenticação JWT e Docker. Integra PostgreSQL, Swagger e Tesseract OCR para criação de atividades educacionais.",
       image: "/assets/alfaeducaserver.png",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
       title: "Lembrete de remédios",
-      description: "Criação de uma API RESTful para gerenciamento de lembretes, aplicando princípios SOLID e Design Patterns. Utilização de Spring Data, JPA e PostgreSQL para operações CRUD, com autenticação JWT para segurança e uma arquitetura modular e escalável.",
+      description: "API RESTful para gerenciamento de medicamentos com Spring Data e JPA. Arquitetura modular seguindo princípios SOLID e padrões de design.",
       image: "/assets/lembreteremedios.webp",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
       title: "Gerenciamento de Viagens",
-      description: "Desenvolvimento de API REST para controle de viagens utilizando Docker para simplificar a configuração do ambiente. Implementação de operações CRUD com PostgreSQL, seguindo boas práticas de SOLID e padrões de design.",
+      description: "API REST para controle de viagens com Docker e PostgreSQL. Implementação CRUD seguindo princípios SOLID e padrões de design.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
       title: "Sistema de Certificação",
-      description: "Configuração de ambiente Spring Boot, desenvolvimento de endpoints REST para CRUD em banco de dados, utilizando PostgreSQL. A API foi projetada para ser escalável, empregando Design Patterns e princípios SOLID.",
+      description: "API Spring Boot escalável para gestão de certificados. Endpoints REST com PostgreSQL e padrões de arquitetura.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
       title: "Challenge ONE | Hotel Alura",
-      description: "Sistema de gerenciamento do hotel Alura, com CRUD Reservas.",
+      description: "Sistema de reservas para hotel com CRUD completo. Desenvolvido como desafio do programa Oracle Next Education.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaJava />, <FaDatabase />],
     },
   ],
   frontend: [
     {
-      title: "SaaS para Óticas.",
-      description: "O nosso principal diferencial é a comunicação constante com o clientes, cuidado com a renovação de exames e organização de vendas. Todo o sistema de comunicação com os clientes é via WhatsApp.",
+      title: "SaaS para Óticas",
+      description: "Sistema de gestão para óticas com integração WhatsApp. Foco em renovação de exames e organização de vendas.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaReact />, <FaNodeJs />],
     },
@@ -48,13 +48,13 @@ export const projectsData = {
     },
     {
       title: "Monitor&A",
-      description: "O projeto tem como objetivo a criação de um site destinado a centralizar a interação entre estudantes, monitores e professores. Para isso, será criado um fórum dedicado às discussões, apresentação e resolução de atividades, bem como ao compartilhamento geral de informações sobre a disciplina.",
+      description: "Plataforma de interação acadêmica com fórum integrado. Centraliza discussões e compartilhamento de materiais entre estudantes e professores.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaReact />],
     },
     {
       title: "Decodificador de texto Alura",
-      description: "Uma aplicação que criptografa textos, assim você poderá trocar mensagens secretas com outras pessoas que saibam o segredo da criptografia utilizada.",
+      description: "Aplicação de criptografia textual para mensagens secretas. Desenvolvido como desafio do programa ONE.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaReact />],
     },
@@ -62,13 +62,13 @@ export const projectsData = {
   mobile: [
     {
       title: "AlfaEduca",
-      description: "Plataforma gamificada para combater o analfabetismo funcional no Brasil, utilizando reconhecimento de texto, leitura em voz alta, divisão silábica e caligrafia interativa.",
+      description: "App gamificado contra analfabetismo funcional. Features: reconhecimento de texto, divisão silábica e caligrafia interativa.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaReact />],
     },
     {
       title: "Gráficos de reservatórios",
-      description: "Busca-se tornar esses valores acessíveis para a população a fim de que seja possível difundir/tornar transparente e de fácil acesso as informações ao respeito da qualidade da água disponível para o abastecimento no município",
+      description: "App de visualização da qualidade da água municipal. Dados transparentes e acessíveis para a população sobre abastecimento.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaReact />],
     },
@@ -82,7 +82,7 @@ export const projectsData = {
   dataAnalysis: [
     {
       title: "Pale Blue Dot",
-      description: "Um sistema de visualização do processo de desertificação no nordeste Brasileiro, com gráficos e mapas interativos. Foi desenvolvido na competição de Visualização de Dados da NASA.",
+      description: "Visualização de dados da desertificação no NE brasileiro. Projeto premiado na competição de Visualização da NASA.",
       image: "https://via.placeholder.com/150",
       technologies: [<FaPython />, <FaDatabase />],
     },

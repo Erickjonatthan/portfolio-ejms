@@ -7,35 +7,23 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const MAX_DESCRIPTION_LENGTH = 100;
-
 // Custom hook for managing categories
 function useCategory() {
   const [activeCategory, setActiveCategory] = useState("backend");
   return { activeCategory, setActiveCategory };
 }
 
-// Custom hook for managing expanded descriptions
-function useExpandedDescriptions() {
-  const [expandedDescriptions, setExpandedDescriptions] = useState({});
-  const toggleDescription = (projectId) => {
-    setExpandedDescriptions((prev) => ({
-      ...prev,
-      [projectId]: !prev[projectId],
-    }));
-  };
-  return { expandedDescriptions, toggleDescription };
-}
-
 export default function Projects() {
   const { activeCategory, setActiveCategory } = useCategory();
-  const { expandedDescriptions, toggleDescription } = useExpandedDescriptions();
   const [ref, isInView] = useInView();
   const sliderRef = useRef(null);
 
   React.useEffect(() => {
     if (sliderRef.current) {
-      sliderRef.current.slickGoTo(0);
+      // Adicionando um pequeno timeout para suavizar a transição
+      setTimeout(() => {
+        sliderRef.current.slickGoTo(0, true);
+      }, 50);
     }
   }, [activeCategory]);
   const settings = {
@@ -44,6 +32,8 @@ export default function Projects() {
     speed: 500,
     arrows: true,
     adaptiveHeight: true,
+    autoplay: true, // Adicionado para autoplay
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 4000,
@@ -87,10 +77,7 @@ export default function Projects() {
     className: "project-carousel pb-10",
   };
 
-  const truncateDescription = (text) => {
-    if (text.length <= MAX_DESCRIPTION_LENGTH) return text;
-    return text.slice(0, MAX_DESCRIPTION_LENGTH) + "...";
-  };
+  
 
   return (
     <>
@@ -154,9 +141,6 @@ export default function Projects() {
                   itemType="https://schema.org/ListItem"
                   role="article"
                   aria-labelledby={`project-title-${activeCategory}-${index}`}
-                  {...(expandedDescriptions[`${activeCategory}-${index}`]
-                    ? { 'aria-hidden': false, inert: false }
-                    : {})}
                 >
                   <div className="relative">
                     <img
@@ -184,28 +168,9 @@ export default function Projects() {
                       itemProp="description"
                     >
                       <p>
-                        {expandedDescriptions[`${activeCategory}-${index}`]
-                          ? project.description
-                          : truncateDescription(project.description)}
+                        {project.description}
                       </p>
-                      {project.description.length > MAX_DESCRIPTION_LENGTH && (
-                        <button
-                          onClick={() =>
-                            toggleDescription(`${activeCategory}-${index}`)
-                          }
-                          className="text-[#012286] hover:text-[#071532] font-medium mt-1 focus:outline-none transition-colors duration-300"
-                          aria-expanded={
-                            expandedDescriptions[`${activeCategory}-${index}`]
-                          }
-                          {...(expandedDescriptions[`${activeCategory}-${index}`]
-                            ? { 'aria-hidden': false, inert: false }
-                            : {})}
-                        >
-                          {expandedDescriptions[`${activeCategory}-${index}`]
-                            ? "Ler menos"
-                            : "Ler mais..."}
-                        </button>
-                      )}
+                      
                     </div>
                     <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
                       {project.technologies?.map((icon, i) => (
