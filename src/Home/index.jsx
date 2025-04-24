@@ -29,7 +29,7 @@ export default function Home() {
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
         style={{
-          backgroundImage: `url("/assets/fundo.png")`,
+          backgroundImage: `url("/assets/fundo.svg")`,
           backgroundAttachment: 'fixed'
         }}
       ></div>

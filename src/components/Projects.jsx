@@ -1,35 +1,80 @@
-import React, { useState, useRef } from 'react';
-import { motion as Motion } from 'framer-motion';
-import { useInView } from '../hooks/useInView';
-import { schemaProjects } from '../schemas/schemas';
-import { projectsData } from '../data/projectsData';
-import Slider from 'react-slick';
+import React, { useState, useRef } from "react";
+import { motion as Motion } from "framer-motion";
+import { useInView } from "../hooks/useInView";
+import { schemaProjects } from "../schemas/schemas";
+import { projectsData } from "../data/projectsData";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const MAX_DESCRIPTION_LENGTH = 100;
 
-export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState('backend');
+// Custom hook for managing categories
+function useCategory() {
+  const [activeCategory, setActiveCategory] = useState("backend");
+  return { activeCategory, setActiveCategory };
+}
+
+// Custom hook for managing expanded descriptions
+function useExpandedDescriptions() {
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
+  const toggleDescription = (projectId) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [projectId]: !prev[projectId],
+    }));
+  };
+  return { expandedDescriptions, toggleDescription };
+}
+
+export default function Projects() {
+  const { activeCategory, setActiveCategory } = useCategory();
+  const { expandedDescriptions, toggleDescription } = useExpandedDescriptions();
   const [ref, isInView] = useInView();
   const sliderRef = useRef(null);
 
+  React.useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0);
+    }
+  }, [activeCategory]);
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 4000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
     beforeChange: (current, next) => {
-      const slides = document.querySelectorAll('.mobile-project-slide');
+      const slides = document.querySelectorAll(".project-slide");
       slides.forEach((slide, index) => {
         if (index === next) {
-          slide.style.transform = 'scale(1)';
+          slide.style.transform = "scale(1)";
         } else {
-          slide.style.transform = 'scale(0.9)';
+          slide.style.transform = "scale(0.95)";
         }
       });
     },
@@ -39,25 +84,19 @@ export default function Projects() {
         aria-label={`Ir para projeto ${i + 1}`}
       />
     ),
-    className: "pb-10" // Adiciona padding na parte inferior para os indicadores
-  };
-
-  const toggleDescription = (projectId) => {
-    setExpandedDescriptions(prev => ({
-      ...prev,
-      [projectId]: !prev[projectId]
-    }));
+    className: "project-carousel pb-10",
   };
 
   const truncateDescription = (text) => {
     if (text.length <= MAX_DESCRIPTION_LENGTH) return text;
-    return text.slice(0, MAX_DESCRIPTION_LENGTH) + '...';
+    return text.slice(0, MAX_DESCRIPTION_LENGTH) + "...";
   };
 
   return (
     <>
-      {/* Dados estruturados para SEO */}
-      <script type="application/ld+json">{JSON.stringify(schemaProjects)}</script>
+      <script type="application/ld+json">
+        {JSON.stringify(schemaProjects)}
+      </script>
       <Motion.section
         ref={ref}
         id="projects"
@@ -70,10 +109,19 @@ export default function Projects() {
         itemScope
         itemType="https://schema.org/ItemList"
       >
-        <div className="w-full max-w-5xl px-4 mx-auto">
-          <h2 className="text-3xl text-white sm:text-4xl lg:text-5xl font-bold text-center mb-4" itemProp="name">Projetos</h2>
-          <p className="text-gray-300 text-center text-base sm:text-xl mb-8" itemProp="description">
-            Esses são os projetos que demonstram minha proficiência em diversas camadas de desenvolvimento. Explore cada categoria para saber mais!
+        <div className="w-full max-w-7xl px-4 mx-auto">
+          <h2
+            className="text-3xl text-white sm:text-4xl lg:text-5xl font-bold text-center mb-4"
+            itemProp="name"
+          >
+            Projetos
+          </h2>
+          <p
+            className="text-gray-300 text-center text-base sm:text-xl mb-8"
+            itemProp="description"
+          >
+            Esses são os projetos que demonstram minha proficiência em diversas
+            camadas de desenvolvimento. Explore cada categoria para saber mais!
           </p>
           <div className="flex flex-row justify-center mb-6 space-x-2 sm:space-x-4 px-2">
             {Object.keys(projectsData).map((category) => (
@@ -82,8 +130,8 @@ export default function Projects() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-2 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-medium capitalize text-sm sm:text-lg transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-[#012286] text-white'
-                    : 'bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white'
+                    ? "bg-[#012286] text-white"
+                    : "bg-gray-200 text-gray-800 hover:bg-[#071532] hover:text-white"
                 }`}
                 aria-label={`Ver projetos da categoria ${category}`}
               >
@@ -92,36 +140,49 @@ export default function Projects() {
             ))}
           </div>
 
-          <div className="flex flex-wrap justify-center relative">
-            {/* Grid para desktop */}
-            <div className="w-full hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {projectsData[activeCategory].map((project, index) => (
+          <Slider ref={sliderRef} {...settings}>
+            {projectsData[activeCategory].map((project, index) => (
+              <div key={index}>
                 <Motion.div
-                  key={index}
-                  className="relative bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm border border-gray-200 hover:border-[#012286] flex flex-col h-full"
-                  whileHover={{ scale: 1.05 }}
+                  className="project-slide relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 hover:border-[#012286] flex flex-col h-full"
+                  style={{
+                    transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                  }}
+                  initial={{ scale: index === 0 ? 1 : 0.95 }}
                   itemProp="itemListElement"
                   itemScope
                   itemType="https://schema.org/ListItem"
                   role="article"
                   aria-labelledby={`project-title-${activeCategory}-${index}`}
+                  {...(expandedDescriptions[`${activeCategory}-${index}`]
+                    ? { 'aria-hidden': false, inert: false }
+                    : {})}
                 >
                   <div className="relative">
                     <img
                       src={project.image}
                       alt={`Imagem ilustrativa do projeto ${project.title}`}
-                      className="w-full h-40 sm:h-48 object-cover transition-transform duration-300"
+                      className="w-full h-48 object-cover"
                       itemProp="image"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-sm sm:text-base font-medium">Visualizar Detalhes</span>
+                      <span className="text-white text-base font-medium">
+                        Visualizar Detalhes
+                      </span>
                     </div>
                   </div>
-                  <div className="p-3 sm:p-4 flex flex-col flex-grow">
-                    <h4 id={`project-title-${activeCategory}-${index}`} className="text-lg sm:text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem] line-clamp-2" itemProp="name">
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h4
+                      id={`project-title-${activeCategory}-${index}`}
+                      className="text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem]"
+                      itemProp="name"
+                    >
                       {project.title}
                     </h4>
-                    <div className="text-gray-600 text-sm sm:text-base transition-colors duration-300" itemProp="description">
+                    <div
+                      className="text-gray-600 text-base transition-colors duration-300"
+                      itemProp="description"
+                    >
                       <p>
                         {expandedDescriptions[`${activeCategory}-${index}`]
                           ? project.description
@@ -129,11 +190,20 @@ export default function Projects() {
                       </p>
                       {project.description.length > MAX_DESCRIPTION_LENGTH && (
                         <button
-                          onClick={() => toggleDescription(`${activeCategory}-${index}`)}
+                          onClick={() =>
+                            toggleDescription(`${activeCategory}-${index}`)
+                          }
                           className="text-[#012286] hover:text-[#071532] font-medium mt-1 focus:outline-none transition-colors duration-300"
-                          aria-expanded={expandedDescriptions[`${activeCategory}-${index}`]}
+                          aria-expanded={
+                            expandedDescriptions[`${activeCategory}-${index}`]
+                          }
+                          {...(expandedDescriptions[`${activeCategory}-${index}`]
+                            ? { 'aria-hidden': false, inert: false }
+                            : {})}
                         >
-                          {expandedDescriptions[`${activeCategory}-${index}`] ? 'Ler menos' : 'Ler mais...'}
+                          {expandedDescriptions[`${activeCategory}-${index}`]
+                            ? "Ler menos"
+                            : "Ler mais..."}
                         </button>
                       )}
                     </div>
@@ -144,72 +214,11 @@ export default function Projects() {
                     </div>
                   </div>
                 </Motion.div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </Slider>
 
-            {/* Carrossel para dispositivos móveis */}
-            <div className="w-full sm:hidden overflow-hidden relative">
-              <Slider ref={sliderRef} {...settings} className="mobile-carousel">
-                {projectsData[activeCategory].map((project, index) => (
-                  <div key={index} className="px-2">
-                    <Motion.div
-                      className="mobile-project-slide relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 hover:border-[#012286] flex flex-col h-full"
-                      initial={{ scale: index === 0 ? 1 : 0.9 }}
-                      itemProp="itemListElement"
-                      itemScope
-                      itemType="https://schema.org/ListItem"
-                      role="article"
-                      aria-labelledby={`project-title-${activeCategory}-${index}`}
-                    >
-                      <div className="relative">
-                        <img
-                          src={project.image}
-                          alt={`Imagem ilustrativa do projeto ${project.title}`}
-                          className="w-full h-48 object-cover"
-                          itemProp="image"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                          <span className="text-white text-base font-medium">Visualizar Detalhes</span>
-                        </div>
-                      </div>
-                      <div className="p-4 flex flex-col flex-grow">
-                        <h4 
-                          id={`project-title-${activeCategory}-${index}`}
-                          className="text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem] line-clamp-2"
-                          itemProp="name"
-                        >
-                          {project.title}
-                        </h4>
-                        <div className="text-gray-600 text-base transition-colors duration-300" itemProp="description">
-                          <p>
-                            {expandedDescriptions[`${activeCategory}-${index}`]
-                              ? project.description
-                              : truncateDescription(project.description)}
-                          </p>
-                          {project.description.length > MAX_DESCRIPTION_LENGTH && (
-                            <button
-                              onClick={() => toggleDescription(`${activeCategory}-${index}`)}
-                              className="text-[#012286] hover:text-[#071532] font-medium mt-1 focus:outline-none transition-colors duration-300"
-                              aria-expanded={expandedDescriptions[`${activeCategory}-${index}`]}
-                            >
-                              {expandedDescriptions[`${activeCategory}-${index}`] ? 'Ler menos' : 'Ler mais...'}
-                            </button>
-                          )}
-                        </div>
-                        <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
-                          {project.technologies?.map((icon, i) => (
-                            <span key={i}>{icon}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </Motion.div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-          </div>
-
-          <Motion.div 
+          <Motion.div
             className="text-center mt-12 bg-gradient-to-r from-[#071532] to-[#012286] p-8 rounded-2xl shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -220,21 +229,24 @@ export default function Projects() {
                 Vamos transformar ideias em realidade?
               </h3>
               <p className="text-gray-200 text-lg mb-6">
-                Estou sempre em busca de novos desafios e parcerias interessantes. 
-                Se você tem um projeto em mente, adoraria ouvir sobre ele!
+                Estou sempre em busca de novos desafios e parcerias
+                interessantes. Se você tem um projeto em mente, adoraria ouvir
+                sobre ele!
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button
                   onClick={() => {
-                    const contactSection = document.getElementById('contact');
+                    const contactSection = document.getElementById("contact");
                     if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                      contactSection.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
                   className="group relative px-8 py-3 bg-white text-[#012286] font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 overflow-hidden"
                   aria-label="Ir para seção de contato"
                 >
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">Iniciar Conversa</span>
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                    Iniciar Conversa
+                  </span>
                   <div className="absolute inset-0 h-full w-0 bg-[#012286] rounded-lg transition-all duration-300 group-hover:w-full -z-0"></div>
                 </button>
                 <p className="text-gray-300 text-sm">ou</p>

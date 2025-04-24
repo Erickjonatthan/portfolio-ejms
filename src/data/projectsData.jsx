@@ -5,13 +5,13 @@ export const projectsData = {
     {
       title: "API REST - AlfaEduca",
       description: "API REST em Spring Boot com autenticação JWT, serviço de email, e documentação Swagger. Utiliza PostgreSQL e Flyway para migrações, além de ser dockerizada para fácil deploy. Inclui recursos como reconhecimento de texto com Tesseract OCR, silabação de palavras e criação de atividades educacionais.",
-      image: "https://via.placeholder.com/150",
+      image: "/assets/alfaeducaserver.png",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
       title: "Lembrete de remédios",
       description: "Criação de uma API RESTful para gerenciamento de lembretes, aplicando princípios SOLID e Design Patterns. Utilização de Spring Data, JPA e PostgreSQL para operações CRUD, com autenticação JWT para segurança e uma arquitetura modular e escalável.",
-      image: "https://via.placeholder.com/150",
+      image: "/assets/lembreteremedios.webp",
       technologies: [<FaJava />, <FaDatabase />],
     },
     {
