@@ -5,33 +5,17 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import Button from "@mui/material/Button";
 import DownloadIcon from "@mui/icons-material/Download";
 import { useInView } from "../hooks/useInView";
-
+import { schemaPerson } from "../schemas/schemas";
 export default function AboutMe() {
   const [ref, isInView] = useInView();
-
-  // Dados estruturados para SEO (JSON-LD)
-  const schemaPerson = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Erick Jonathan Macedo dos Santos",
-    "jobTitle": "Desenvolvedor FullStack, Cientista de Dados, Freelancer",
-    "url": "https://ericksantos.is-a.dev/",
-    "email": "erick.jonathan@ufrpe.br",
-    "image": "https://ericksantos.is-a.dev/assets/profile.jpg",
-    "sameAs": [
-      "https://www.linkedin.com/in/ericksantos",
-      "https://github.com/erickjonatthan",
-      "http://lattes.cnpq.br/1597336402095190"
-    ]
-  };
-
   const scrollToSection = (id) => {
-      const section = document.getElementById(id);
-      if (section) {
-        const yOffset = -40;
-        const yPosition = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: yPosition, behavior: "smooth" });
-      }
+    const section = document.getElementById(id);
+    if (section) {
+      const yOffset = -40;
+      const yPosition =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: yPosition, behavior: "smooth" });
+    }
   };
 
   return (
@@ -52,30 +36,39 @@ export default function AboutMe() {
       >
         <div className="flex flex-col md:flex-row items-center text-center md:text-left max-w-4xl">
           <div className="flex-1 mb-6 md:mb-0">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" itemProp="name">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
+              itemProp="name"
+            >
               Quem é{" "}
-              <span
-                className="text-white hover:text-blue-600 transition-colors duration-300"
-              >
+              <span className="text-white hover:text-blue-600 transition-colors duration-300">
                 Erick
               </span>
               ?
             </h1>
             <p className="text-lg mb-4 text-justify" itemProp="description">
-              Estudante de Engenharia da Computação e Técnico em Informática, com
-              paixão por desenvolvimento FullStack. Interessado em competições de
-              programação e projetos de iniciação científica. Aprimora
-              constantemente suas habilidades com eventos e cursos de programação.
+              Estudante de Engenharia da Computação e Técnico em Informática,
+              com paixão por desenvolvimento FullStack. Interessado em
+              competições de programação e projetos de iniciação científica.
+              Aprimora constantemente suas habilidades com eventos e cursos de
+              programação.
             </p>
             <p className="text-lg mb-4 text-justify">
               Profissional dedicado e inovador, busca projetos Freelancer que
-              contribuam e desafiem. Então, o que você está esperando? transforme suas ideias em realidade com um
-              especialista em soluções sofisticadas!
+              contribuam e desafiem. Então, o que você está esperando?
+              transforme suas ideias em realidade com um especialista em
+              soluções sofisticadas!
             </p>
             <p className="text-lg text-left mb-6">
-              <span className="text-neonBlue font-bold">Email:</span> <a href="mailto:erick.jonathan@ufrpe.br" itemProp="email">erick.jonathan@ufrpe.br</a>
+              <span className="text-neonBlue font-bold">Email:</span>{" "}
+              <a href="mailto:erick.jonathan@ufrpe.br" itemProp="email">
+                erick.jonathan@ufrpe.br
+              </a>
             </p>
-            <div className="flex items-center space-x-2 mt-6 mb-6" aria-label="Redes sociais">
+            <div
+              className="flex items-center space-x-2 mt-6 mb-6"
+              aria-label="Redes sociais"
+            >
               <a
                 href="https://www.linkedin.com/in/ericksantos"
                 target="_blank"
@@ -142,7 +135,9 @@ export default function AboutMe() {
               }}
               aria-label="Ver minhas skills"
             >
-              <span style={{ fontSize: "1.1rem", fontWeight: "600" }}>Ver Minhas Skills</span>
+              <span style={{ fontSize: "1.1rem", fontWeight: "600" }}>
+                Ver Minhas Skills
+              </span>
             </Button>
           </div>
           <div className="flex-shrink-0 md:ml-28 flex flex-col items-center">
@@ -171,7 +166,9 @@ export default function AboutMe() {
               }}
               aria-label="Baixar currículo de Erick Jonathan Macedo dos Santos"
             >
-              <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>Baixar CV</span>
+              <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                Baixar CV
+              </span>
             </Button>
           </div>
         </div>

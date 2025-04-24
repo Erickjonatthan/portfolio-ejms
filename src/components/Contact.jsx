@@ -1,34 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import { useInView } from '../hooks/useInView';
+import useContactForm from '../hooks/useContactForm';
 
 export default function Contact() {
   const [ref, isInView] = useInView();
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    assunto: '',
-    mensagem: ''
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const mensagemWhatsApp = `Olá! Me chamo ${formData.nome}.\nEmail: ${formData.email}\nAssunto: ${formData.assunto}\n\nMensagem: ${formData.mensagem}`;
-    
-    const whatsappUrl = `https://wa.me/5581989979429?text=${encodeURIComponent(mensagemWhatsApp)}`;
-    
-    window.open(whatsappUrl, '_blank');
-  };
+  const { formData, handleInputChange, handleSubmit } = useContactForm();
 
   return (
     <Motion.section

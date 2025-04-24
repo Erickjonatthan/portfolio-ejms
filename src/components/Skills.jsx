@@ -2,47 +2,10 @@ import { motion as Motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import SchoolIcon from "@mui/icons-material/School";
 import { useInView } from '../hooks/useInView';
-
-const TechnologyBadge = ({ src, alt }) => (
-  <img
-    src={src}
-    alt={alt}
-    className="w-30 h-8 mx-2 my-2 transition-transform transform hover:scale-110 hover:shadow-lg"
-  />
-);
-
+import { TechnologyBadge } from '../models/TechnologyBadge'; // Nova importação
+import { schemaSkills } from "../schemas/schemas";
 export default function Skills() {
   const [ref, isInView] = useInView();
-
-  // Dados estruturados para SEO (JSON-LD)
-  const schemaSkills = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Habilidades Técnicas de Erick Jonathan Macedo dos Santos",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Desenvolvimento Web"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Desenvolvimento Mobile"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Banco de Dados"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "UI/UX"
-      }
-    ]
-  };
-
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {

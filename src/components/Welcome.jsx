@@ -4,7 +4,7 @@ import { useScrollToSection } from "../hooks/useScrollToSection";
 
 export default function Welcome() {
   const scrollToSection = useScrollToSection();
-
+  
   return (
     <div className="flex flex-col justify-center h-full pl-4 mt-24 sm:mt-32 lg:mt-36">
       <div className="flex flex-col md:flex-row items-center gap-8">
