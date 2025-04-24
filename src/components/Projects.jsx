@@ -1,12 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 import { schemaProjects } from '../schemas/schemas';
 import { projectsData } from '../data/projectsData';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const MAX_DESCRIPTION_LENGTH = 100;
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('backend');
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
   const [ref, isInView] = useInView();
+  const sliderRef = useRef(null);
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    adaptiveHeight: true,
+    beforeChange: (current, next) => {
+      const slides = document.querySelectorAll('.mobile-project-slide');
+      slides.forEach((slide, index) => {
+        if (index === next) {
+          slide.style.transform = 'scale(1)';
+        } else {
+          slide.style.transform = 'scale(0.9)';
+        }
+      });
+    },
+    customPaging: (i) => (
+      <button
+        className={`w-3 h-3 rounded-full transition-all duration-300 bg-gray-300 hover:bg-[#012286]`}
+        aria-label={`Ir para projeto ${i + 1}`}
+      />
+    ),
+    className: "pb-10" // Adiciona padding na parte inferior para os indicadores
+  };
+
+  const toggleDescription = (projectId) => {
+    setExpandedDescriptions(prev => ({
+      ...prev,
+      [projectId]: !prev[projectId]
+    }));
+  };
+
+  const truncateDescription = (text) => {
+    if (text.length <= MAX_DESCRIPTION_LENGTH) return text;
+    return text.slice(0, MAX_DESCRIPTION_LENGTH) + '...';
+  };
 
   return (
     <>
@@ -46,12 +92,13 @@ export default function Projects() {
             ))}
           </div>
 
-          <div className="flex flex-wrap justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="flex flex-wrap justify-center relative">
+            {/* Grid para desktop */}
+            <div className="w-full hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {projectsData[activeCategory].map((project, index) => (
                 <Motion.div
                   key={index}
-                  className="relative bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm border border-gray-200 hover:border-[#012286]"
+                  className="relative bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm border border-gray-200 hover:border-[#012286] flex flex-col h-full"
                   whileHover={{ scale: 1.05 }}
                   itemProp="itemListElement"
                   itemScope
@@ -70,13 +117,26 @@ export default function Projects() {
                       <span className="text-white text-sm sm:text-base font-medium">Visualizar Detalhes</span>
                     </div>
                   </div>
-                  <div className="p-3 sm:p-4">
-                    <h4 id={`project-title-${activeCategory}-${index}`} className="text-lg sm:text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300" itemProp="name">
+                  <div className="p-3 sm:p-4 flex flex-col flex-grow">
+                    <h4 id={`project-title-${activeCategory}-${index}`} className="text-lg sm:text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem] line-clamp-2" itemProp="name">
                       {project.title}
                     </h4>
-                    <p className="text-gray-600 text-sm sm:text-base transition-colors duration-300" itemProp="description">
-                      {project.description}
-                    </p>
+                    <div className="text-gray-600 text-sm sm:text-base transition-colors duration-300" itemProp="description">
+                      <p>
+                        {expandedDescriptions[`${activeCategory}-${index}`]
+                          ? project.description
+                          : truncateDescription(project.description)}
+                      </p>
+                      {project.description.length > MAX_DESCRIPTION_LENGTH && (
+                        <button
+                          onClick={() => toggleDescription(`${activeCategory}-${index}`)}
+                          className="text-[#012286] hover:text-[#071532] font-medium mt-1 focus:outline-none transition-colors duration-300"
+                          aria-expanded={expandedDescriptions[`${activeCategory}-${index}`]}
+                        >
+                          {expandedDescriptions[`${activeCategory}-${index}`] ? 'Ler menos' : 'Ler mais...'}
+                        </button>
+                      )}
+                    </div>
                     <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
                       {project.technologies?.map((icon, i) => (
                         <span key={i}>{icon}</span>
@@ -85,6 +145,67 @@ export default function Projects() {
                   </div>
                 </Motion.div>
               ))}
+            </div>
+
+            {/* Carrossel para dispositivos móveis */}
+            <div className="w-full sm:hidden overflow-hidden relative">
+              <Slider ref={sliderRef} {...settings} className="mobile-carousel">
+                {projectsData[activeCategory].map((project, index) => (
+                  <div key={index} className="px-2">
+                    <Motion.div
+                      className="mobile-project-slide relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 hover:border-[#012286] flex flex-col h-full"
+                      initial={{ scale: index === 0 ? 1 : 0.9 }}
+                      itemProp="itemListElement"
+                      itemScope
+                      itemType="https://schema.org/ListItem"
+                      role="article"
+                      aria-labelledby={`project-title-${activeCategory}-${index}`}
+                    >
+                      <div className="relative">
+                        <img
+                          src={project.image}
+                          alt={`Imagem ilustrativa do projeto ${project.title}`}
+                          className="w-full h-48 object-cover"
+                          itemProp="image"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                          <span className="text-white text-base font-medium">Visualizar Detalhes</span>
+                        </div>
+                      </div>
+                      <div className="p-4 flex flex-col flex-grow">
+                        <h4 
+                          id={`project-title-${activeCategory}-${index}`}
+                          className="text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem] line-clamp-2"
+                          itemProp="name"
+                        >
+                          {project.title}
+                        </h4>
+                        <div className="text-gray-600 text-base transition-colors duration-300" itemProp="description">
+                          <p>
+                            {expandedDescriptions[`${activeCategory}-${index}`]
+                              ? project.description
+                              : truncateDescription(project.description)}
+                          </p>
+                          {project.description.length > MAX_DESCRIPTION_LENGTH && (
+                            <button
+                              onClick={() => toggleDescription(`${activeCategory}-${index}`)}
+                              className="text-[#012286] hover:text-[#071532] font-medium mt-1 focus:outline-none transition-colors duration-300"
+                              aria-expanded={expandedDescriptions[`${activeCategory}-${index}`]}
+                            >
+                              {expandedDescriptions[`${activeCategory}-${index}`] ? 'Ler menos' : 'Ler mais...'}
+                            </button>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
+                          {project.technologies?.map((icon, i) => (
+                            <span key={i}>{icon}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </Motion.div>
+                  </div>
+                ))}
+              </Slider>
             </div>
           </div>
 
