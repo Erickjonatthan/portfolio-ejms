@@ -18,35 +18,34 @@ export default function Projects() {
   const [ref, isInView] = useInView();
   const sliderRef = useRef(null);
 
-  React.useEffect(() => {
-    if (sliderRef.current) {
-      // Adicionando um pequeno timeout para suavizar a transição
-      setTimeout(() => {
-        sliderRef.current.slickGoTo(0, true);
-      }, 50);
-    }
-  }, [activeCategory]);
+  const projectsCount = projectsData[activeCategory]?.length || 0; // Número de projetos na categoria ativa
+  const slidesToShow = 3; // Número de slides visíveis para desktops
+
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: projectsCount > slidesToShow, // Desativa o loop infinito se o número de slides for igual ou menor que slidesToShow
     speed: 500,
     arrows: true,
     adaptiveHeight: true,
-    autoplay: true, // Adicionado para autoplay
+    autoplay: true,
     autoplaySpeed: 3000,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToShow, // Deve ser igual a slidesToShow para desktops
     responsive: [
       {
         breakpoint: 4000,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToShow: slidesToShow,
+          slidesToScroll: slidesToShow,
+          infinite: projectsCount > slidesToShow, // Ajusta o comportamento para desktops
         },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
+          infinite: projectsCount > 2, // Ajusta para tablets
         },
       },
       {
@@ -54,6 +53,7 @@ export default function Projects() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: projectsCount > 1, // Ajusta para dispositivos móveis
           arrows: false,
         },
       },
@@ -75,9 +75,12 @@ export default function Projects() {
       />
     ),
     className: "project-carousel pb-10",
+    appendDots: (dots) => (
+      <div>
+        <ul className="custom-dots">{dots}</ul>
+      </div>
+    ),
   };
-
-  
 
   return (
     <>
@@ -87,7 +90,7 @@ export default function Projects() {
       <Motion.section
         ref={ref}
         id="projects"
-        className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:mt-10 sm:px-8"
+        className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:px-8"
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -146,14 +149,20 @@ export default function Projects() {
                     <img
                       src={project.image}
                       alt={`Imagem ilustrativa do projeto ${project.title}`}
-                      // arredondando as bordas da imagem
                       className="w-full h-48 object-contain rounded-3xl"
                       itemProp="image"
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-base font-medium">
+                    <div
+                      className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+                    >
+                      <a
+                        href={project.link} // O link permanece aqui
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white text-base font-medium"
+                      >
                         Visualizar Detalhes
-                      </span>
+                      </a>
                     </div>
                   </div>
                   <div className="p-4 flex flex-col flex-grow">
@@ -168,10 +177,7 @@ export default function Projects() {
                       className="text-gray-600 text-base transition-colors duration-300"
                       itemProp="description"
                     >
-                      <p>
-                        {project.description}
-                      </p>
-                      
+                      <p>{project.description}</p>
                     </div>
                     <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
                       {project.technologies?.map((icon, i) => (
@@ -183,49 +189,6 @@ export default function Projects() {
               </div>
             ))}
           </Slider>
-
-          <Motion.div
-            className="text-center mt-12 bg-gradient-to-r from-[#071532] to-[#012286] p-8 rounded-2xl shadow-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="max-w-2xl mx-auto">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                Vamos transformar ideias em realidade?
-              </h3>
-              <p className="text-gray-200 text-lg mb-6">
-                Estou sempre em busca de novos desafios e parcerias
-                interessantes. Se você tem um projeto em mente, adoraria ouvir
-                sobre ele!
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button
-                  onClick={() => {
-                    const contactSection = document.getElementById("contact");
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                  className="group relative px-8 py-3 bg-white text-[#012286] font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 overflow-hidden"
-                  aria-label="Ir para seção de contato"
-                >
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                    Iniciar Conversa
-                  </span>
-                  <div className="absolute inset-0 h-full w-0 bg-[#012286] rounded-lg transition-all duration-300 group-hover:w-full -z-0"></div>
-                </button>
-                <p className="text-gray-300 text-sm">ou</p>
-                <a
-                  href="mailto:erick.jonathan@ufrpe.br"
-                  className="px-8 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-[#012286] transition-all duration-300 transform hover:scale-105"
-                  aria-label="Enviar e-mail direto para Erick Jonathan Macedo dos Santos"
-                >
-                  Enviar E-mail Direto
-                </a>
-              </div>
-            </div>
-          </Motion.div>
         </div>
       </Motion.section>
     </>

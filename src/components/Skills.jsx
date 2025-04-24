@@ -24,7 +24,7 @@ export default function Skills() {
         id="skills"
         role="region"
         aria-label="Minhas Habilidades Técnicas"
-        className="w-full min-h-screen flex flex-col justify-center items-center p-8 text-white"
+        className="w-full min-h-screen flex flex-col justify-center items-center p-8 text-white mt-12"
         itemScope
         itemType="https://schema.org/ItemList"
         initial={{ opacity: 0, y: 50 }}

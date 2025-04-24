@@ -150,6 +150,15 @@ body::-webkit-scrollbar-thumb:hover {
   .project-carousel .slick-arrow {
     display: none !important;
   }
+  .project-slide {
+    transform: scale(1) !important; /* Remove o efeito de escala */
+    transition: none !important; /* Remove a transição */
+  }
+
+  .project-slide:hover {
+    transform: scale(1) !important; /* Garante que o hover não aplique escala */
+    box-shadow: none !important; /* Remove o efeito de sombra no hover */
+  }
 }
 .slick-list {
   height: 500px !important;

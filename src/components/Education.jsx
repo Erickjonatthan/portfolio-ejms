@@ -20,7 +20,7 @@ export default function Education() {
       <Motion.section
         ref={ref}
         id="education"
-        className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:px-8 sm:mt-10"
+        className="w-full min-h-screen text-gray-800 flex flex-col items-center justify-center sm:px-8 mt-12"
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -206,7 +206,7 @@ export default function Education() {
             </div>
           )}
           <Motion.div
-            className="text-left mt-8 mb-12"
+            className="text-left mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 }}

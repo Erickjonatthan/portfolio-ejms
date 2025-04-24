@@ -6,8 +6,8 @@ export default function Welcome() {
   const scrollToSection = useScrollToSection();
   
   return (
-    <div className="flex flex-col justify-center h-full pl-4 mt-24 sm:mt-32 lg:mt-36">
-      <div className="flex flex-col md:flex-row items-center gap-8">
+    <div className="flex flex-col justify-center h-full pl-4 mt-24 sm:mt-32 lg:mt-24">
+      <div className="flex flex-col md:flex-row items-center lg:gap-8 sm:gap-2">
         <h1 className="text-left text-3xl md:text-3xl lg:text-5xl lg:leading-snug font-bold text-white p-5 leading-snug md:leading-snug">
           Converto{" "}
           <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">
@@ -45,7 +45,6 @@ export default function Welcome() {
         style={{
           marginTop: "20px",
           marginLeft: "20px",
-          marginBottom: "80px",
           background: "linear-gradient(90deg, #1E88E5, #42A5F5)",
           color: "#fff",
           fontWeight: "bold",
