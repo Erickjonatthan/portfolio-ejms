@@ -36,11 +36,11 @@ export default function Header() {
         >
           <div className="flex items-center">
             <div>
-              <h1 className="text-5xl lg:text-5xl sm:text-4xl font-bold">
+              <h1 className="text-4xl lg:text-5xl sm:text-4xl font-bold">
                 <span className="text-neonBlue">&lt;</span>ejms
                 <span className="text-neonBlue">/&gt;</span>
               </h1>
-              <p className="text-xl lg:text-lg sm:text-base mt-2">
+              <p className="text-lg lg:text-lg sm:text-base mt-2">
                 <TypeAnimation
                   sequence={[
                     "Desenvolvedor FullStack",

@@ -15,7 +15,7 @@ const educationData = [
   {
     title: "Técnico em Informática para Internet",
     institution: "IFPE - Campus Belo Jardim",
-    logo: "/assets/ifpebj.png",
+    logo: "/assets/ifpebj.svg",
     completed: true,
     description:
       "Curso técnico com ênfase em desenvolvimento web e tecnologias para internet.",
@@ -206,7 +206,7 @@ export default function Education() {
               {educationData.map((edu, index) => (
                 <Motion.div
                   key={index}
-                  className="flex flex-col sm:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 w-full border border-gray-200 hover:border-[#012286] p-4"
+                  className="flex flex-col sm:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 w-full border border-gray-200 hover:border-[#012286] p-2 sm:p-4"
                   itemProp="itemListElement"
                   itemScope
                   itemType="https://schema.org/ListItem"
@@ -217,14 +217,14 @@ export default function Education() {
                     <img
                       src={edu.logo}
                       alt={`Logo da instituição ${edu.institution}`}
-                      className="w-32 h-32 object-contain"
+                      className="w-24 h-24 sm:w-32 sm:h-32 object-contain"
                       itemProp="image"
                     />
                   </div>
                   <div className="flex-1">
                     <h3
                       id={`edu-title-${index}`}
-                      className="text-xl sm:text-2xl font-bold text-gray-800 mb-2"
+                      className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2"
                       itemProp="name"
                     >
                       {edu.title}
@@ -269,7 +269,7 @@ export default function Education() {
               {certificates.map((cert, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between bg-white shadow-md rounded-lg p-4 border border-gray-200"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between bg-white shadow-md rounded-lg p-2 sm:p-4 border border-gray-200"
                   itemProp="itemListElement"
                   itemScope
                   itemType="https://schema.org/ListItem"
@@ -279,7 +279,7 @@ export default function Education() {
                   <div>
                     <h4
                       id={`cert-title-${index}`}
-                      className="text-lg font-semibold text-gray-800"
+                      className="text-base sm:text-lg font-semibold text-gray-800"
                       itemProp="name"
                     >
                       {cert.title}
@@ -307,7 +307,7 @@ export default function Education() {
               {awards.map((award, index) => (
                 <div
                   key={index}
-                  className="bg-white shadow-md rounded-lg p-4 border border-gray-200"
+                  className="bg-white shadow-md rounded-lg p-2 sm:p-4 border border-gray-200"
                   itemProp="itemListElement"
                   itemScope
                   itemType="https://schema.org/ListItem"
@@ -329,7 +329,7 @@ export default function Education() {
             </div>
           )}
           <Motion.div
-            className="text-left mt-8"
+            className="text-left mt-8 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 }}

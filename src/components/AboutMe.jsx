@@ -117,7 +117,7 @@ export default function AboutMe() {
                 itemProp="sameAs"
               >
                 <img
-                  src="/assets/lattes.png"
+                  src="/assets/lattes.svg"
                   alt="Currículo Lattes de Erick Jonathan Macedo dos Santos"
                   className="w-10 h-10 object-contain hover:filter hover:brightness-0 hover:invert"
                   style={{
@@ -147,10 +147,10 @@ export default function AboutMe() {
           </div>
           <div className="flex-shrink-0 md:ml-28 flex flex-col items-center">
             <img
-              src="/assets/profile.jpg"
-              alt="Foto de Erick Jonathan Macedo dos Santos, desenvolvedor web"
+              src="/assets/programming-animate.svg"
+              alt="Imagem de programação"
               loading="lazy"
-              className="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-full shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-110 hover:shadow-blue-500/50 object-cover"
+              className="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72  shadow-lg object-cover"
               itemProp="image"
             />
             <Button
