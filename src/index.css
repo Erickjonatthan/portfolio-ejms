@@ -58,9 +58,9 @@ body::-webkit-scrollbar-thumb:hover {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     transform-origin: center center;
     transform: scale(1) !important;
-    overflow: visible !important; /* Garante que o conteúdo não seja cortado */
-    height: 450px !important; /* Ajusta a altura automaticamente */
-    width: 350px !important; /* Aumenta a largura dos cards */
+    overflow: visible !important;
+    height: 450px !important; 
+    width: 350px !important;
   }
   
   .project-slide:hover {
@@ -77,7 +77,7 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: 10;
     transition: all 0.3s ease;
     transform: scale(1.1);
-    top: 40%; /* Alterado de 50% para 45% */
+    top: 40%;
     margin: 0 -20px;
   }
   .project-carousel .slick-arrow:hover {
@@ -91,7 +91,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
   
   .project-carousel .slick-next {
-    margin-right: -8px; /* Ajuste para mover a seta da direita mais para a esquerda */
+    margin-right: -8px;
   }
 }
 
@@ -151,13 +151,13 @@ body::-webkit-scrollbar-thumb:hover {
     display: none !important;
   }
   .project-slide {
-    transform: scale(1) !important; /* Remove o efeito de escala */
-    transition: none !important; /* Remove a transição */
+    transform: scale(1) !important;
+    transition: none !important;
   }
 
   .project-slide:hover {
-    transform: scale(1) !important; /* Garante que o hover não aplique escala */
-    box-shadow: none !important; /* Remove o efeito de sombra no hover */
+    transform: scale(1) !important;
+    box-shadow: none !important;
   }
 }
 .slick-list {

@@ -20,7 +20,6 @@ export default function AboutMe() {
 
   return (
     <>
-      {/* Dados estruturados para SEO */}
       <script type="application/ld+json">{JSON.stringify(schemaPerson)}</script>
       <Motion.section
         ref={ref}

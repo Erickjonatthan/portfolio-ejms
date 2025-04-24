@@ -1,4 +1,4 @@
-import { FaReact, FaNodeJs, FaPython, FaDatabase, FaJava, FaWhatsapp, FaHtml5, FaCss3, FaPhp } from 'react-icons/fa';
+import { FaReact, FaPython, FaDatabase, FaJava, FaWhatsapp, FaHtml5, FaCss3, FaPhp } from 'react-icons/fa';
 import { FaFlutter } from "react-icons/fa6";
 import { SiSpring, SiGodotengine, SiFlask } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";

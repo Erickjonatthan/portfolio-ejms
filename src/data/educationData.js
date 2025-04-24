@@ -74,7 +74,7 @@ export const certificates = [
   },
 ];
 
-// Mapeamento dos meses em português para números (0-11)
+
 export const monthMap = {
   janeiro: 0,
   fevereiro: 1,
@@ -90,7 +90,6 @@ export const monthMap = {
   dezembro: 11,
 };
 
-// Função para converter a data string para objeto Date
 export const parseDate = (dateString) => {
   const parts = dateString.toLowerCase().split(" de ");
   if (parts.length === 2) {
@@ -103,7 +102,6 @@ export const parseDate = (dateString) => {
   return new Date(0);
 };
 
-// Ordena os certificados pela data (mais recente primeiro)
 certificates.sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
 export const awards = [

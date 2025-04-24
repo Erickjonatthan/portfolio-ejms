@@ -2,7 +2,7 @@ import { motion as Motion } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import SchoolIcon from "@mui/icons-material/School";
 import { useInView } from '../hooks/useInView';
-import { TechnologyBadge } from '../models/TechnologyBadge'; // Nova importação
+import { TechnologyBadge } from '../models/TechnologyBadge';
 import { schemaSkills } from "../schemas/schemas";
 export default function Skills() {
   const [ref, isInView] = useInView();
@@ -17,7 +17,6 @@ export default function Skills() {
   };
   return (
     <>
-      {/* Dados estruturados para SEO */}
       <script type="application/ld+json">{JSON.stringify(schemaSkills)}</script>
       <Motion.section
         ref={ref}
@@ -33,7 +32,6 @@ export default function Skills() {
         viewport={{ once: false, amount: 0.2 }}
       >
         <div className="flex flex-col md:flex-row items-center md:items-start md:gap-x-8">
-          {/* Lado esquerdo: Título, descrição e animação Lottie */}
           <div className="md:w-1/3 text-center md:text-left mb-8 md:mb-0 flex flex-col items-center md:items-start">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" itemProp="name">
               Minhas Habilidades Técnicas
