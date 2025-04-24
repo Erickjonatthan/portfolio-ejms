@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { useScrollVisibility } from "../hooks/useScrollVisibility";
@@ -9,6 +9,7 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState(null);
   const isVisible = useScrollVisibility();
   const scrollToSection = useScrollToSection();
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,11 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+
+    // Gerenciar foco ao abrir/fechar o menu
+    if (isMenuOpen) {
+      menuRef.current?.querySelector("button")?.focus();
+    }
   }, [isMenuOpen]);
 
   return (
@@ -73,6 +79,7 @@ export default function Header() {
                           : ""
                       }`}
                       aria-label={section}
+                      tabIndex={0} // Torna o botão acessível via Tab
                     >
                       {section === "about-me" && "Sobre"}
                       {section === "skills" && "Skills"}
@@ -90,6 +97,7 @@ export default function Header() {
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
+            tabIndex={0} // Torna o botão acessível via Tab
           >
             {isMenuOpen ? (
               <svg
@@ -127,6 +135,7 @@ export default function Header() {
           <AnimatePresence>
             {isMenuOpen && (
               <Motion.div
+                ref={menuRef}
                 className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex flex-col items-center justify-center z-50 overflow-hidden"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -138,6 +147,7 @@ export default function Header() {
                   className="absolute top-4 right-4"
                   onClick={() => setIsMenuOpen(false)}
                   aria-label="Close Menu"
+                  tabIndex={0} // Torna o botão acessível via Tab
                 >
                   <svg
                     className="w-8 h-8 text-white"
@@ -169,6 +179,7 @@ export default function Header() {
                               : ""
                           }`}
                           aria-label={section}
+                          tabIndex={0} // Torna o botão acessível via Tab
                         >
                           {section === "about-me" && "Sobre"}
                           {section === "skills" && "Skills"}

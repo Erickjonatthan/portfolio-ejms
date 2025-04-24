@@ -68,64 +68,73 @@ export default function Projects() {
           </div>
 
           <Slider ref={sliderRef} {...settings}>
-            {projectsData[activeCategory].map((project, index) => (
-              <div key={index}>
-                <Motion.div
-                  className="project-slide relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 hover:border-[#012286] flex flex-col h-full"
-                  style={{
-                    transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  }}
-                  initial={{ scale: index === 0 ? 1 : 0.95 }}
-                  itemProp="itemListElement"
-                  itemScope
-                  itemType="https://schema.org/ListItem"
-                  role="article"
-                  aria-labelledby={`project-title-${activeCategory}-${index}`}
+            {projectsData[activeCategory].map((project, index) => {
+              const isActive = sliderRef.current?.innerSlider.state.currentSlide === index;
+
+              return (
+                <div
+                  key={index}
+                  inert={!isActive} // Corrigido para usar um valor booleano
+                  aria-hidden={!isActive} // Mantém o aria-hidden para acessibilidade
+                  tabIndex={!isActive ? -1 : 0} // Garante que apenas o slide ativo seja focável
                 >
-                  <div className="relative w-full h-full">
-                    <img
-                      src={project.image}
-                      alt={`Imagem ilustrativa do projeto ${project.title}`}
-                      className="w-full h-full object-cover rounded-3xl"
-                      itemProp="image"
-                    />
-                    <div
-                      className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
-                      style={{ borderRadius: "inherit" }} // Garante que o efeito respeite os cantos arredondados do slide
-                    >
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white text-base font-medium"
+                  <Motion.div
+                    className="project-slide relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 hover:border-[#012286] flex flex-col h-full"
+                    style={{
+                      transition: "height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                    }}
+                    initial={{ scale: index === 0 ? 1 : 0.95 }}
+                    itemProp="itemListElement"
+                    itemScope
+                    itemType="https://schema.org/ListItem"
+                    role="article"
+                    aria-labelledby={`project-title-${activeCategory}-${index}`}
+                  >
+                    <div className="relative w-full h-full">
+                      <img
+                        src={project.image}
+                        alt={`Imagem ilustrativa do projeto ${project.title}`}
+                        className="w-full h-full object-cover rounded-3xl"
+                        itemProp="image"
+                      />
+                      <div
+                        className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+                        style={{ borderRadius: "inherit" }}
                       >
-                        Visualizar Detalhes
-                      </a>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white text-base font-medium"
+                        >
+                          Visualizar Detalhes
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-4 flex flex-col flex-grow">
-                    <h4
-                      id={`project-title-${activeCategory}-${index}`}
-                      className="text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem]"
-                      itemProp="name"
-                    >
-                      {project.title}
-                    </h4>
-                    <div
-                      className="text-gray-600 text-base transition-colors duration-300"
-                      itemProp="description"
-                    >
-                      <p>{project.description}</p>
+                    <div className="p-4 flex flex-col flex-grow">
+                      <h4
+                        id={`project-title-${activeCategory}-${index}`}
+                        className="text-xl font-bold mb-2 text-gray-800 hover:text-[#012286] transition-colors duration-300 h-[3rem]"
+                        itemProp="name"
+                      >
+                        {project.title}
+                      </h4>
+                      <div
+                        className="text-gray-600 text-base transition-colors duration-300"
+                        itemProp="description"
+                      >
+                        <p>{project.description}</p>
+                      </div>
+                      <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
+                        {project.technologies?.map((icon, i) => (
+                          <span key={i}>{icon}</span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex flex-wrap mt-2 space-x-2 text-xl text-[#012286]">
-                      {project.technologies?.map((icon, i) => (
-                        <span key={i}>{icon}</span>
-                      ))}
-                    </div>
-                  </div>
-                </Motion.div>
-              </div>
-            ))}
+                  </Motion.div>
+                </div>
+              );
+            })}
           </Slider>
         </div>
       </Motion.section>
