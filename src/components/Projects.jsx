@@ -145,18 +145,19 @@ export default function Projects() {
                   role="article"
                   aria-labelledby={`project-title-${activeCategory}-${index}`}
                 >
-                  <div className="relative">
+                  <div className="relative w-full h-full">
                     <img
                       src={project.image}
                       alt={`Imagem ilustrativa do projeto ${project.title}`}
-                      className="w-full h-48 object-contain rounded-3xl"
+                      className="w-full h-full object-cover rounded-3xl"
                       itemProp="image"
                     />
                     <div
                       className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+                      style={{ borderRadius: "inherit" }} // Garante que o efeito respeite os cantos arredondados do slide
                     >
                       <a
-                        href={project.link} // O link permanece aqui
+                        href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white text-base font-medium"
