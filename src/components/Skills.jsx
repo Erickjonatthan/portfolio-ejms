@@ -147,14 +147,6 @@ export default function Skills() {
                   src="https://img.shields.io/badge/-Godot-478CBF?&logo=godot-engine&logoColor=white"
                   alt="Godot"
                 />
-                <TechnologyBadge
-                  src="https://img.shields.io/badge/-Android%20Studio-3DDC84?&logo=android-studio&logoColor=white"
-                  alt="Android Studio"
-                />
-                <TechnologyBadge
-                  src="https://img.shields.io/badge/-Kotlin-0095D5?&logo=kotlin&logoColor=white"
-                  alt="Kotlin"
-                />
               </div>
             </div>
 
