@@ -53,8 +53,6 @@ export default function Header() {
                     1000,
                     "Freelancer",
                     1000,
-                    "Cientista de Dados",
-                    1000,
                     "Pesquisador Científico",
                     1000,
                   ]}
