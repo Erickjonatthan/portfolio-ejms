@@ -43,7 +43,7 @@ export default function Welcome() {
             <ArrowDownwardIcon className="ml-2" />
           </button>
         </div>
-        <div className="w-full md:w-1/3 flex justify-center md:justify-end">
+        <div className="w-full md:w-1/3 flex justify-center md:pl-4">
           <img 
             src="/assets/profile.jpg" 
             alt="Foto de Erick Jonathan Macedo dos Santos, desenvolvedor web" 
