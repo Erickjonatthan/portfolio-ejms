@@ -35,7 +35,7 @@ export default function Welcome() {
           src="/assets/profile.jpg" 
           alt="Foto de Erick Jonathan Macedo dos Santos, desenvolvedor web" 
           loading="lazy" 
-          className="w-52 h-52 md:w-56 md:h-56 lg:w-80 lg:h-80 rounded-full shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-110 hover:shadow-blue-500/50 object-cover" 
+          className="w-52 h-52 md:w-56 md:h-56 lg:w-80 lg:h-80 lg:ml-64 rounded-full shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-110 hover:shadow-blue-500/50 object-cover" 
           itemProp="image" 
         />
       </div>
