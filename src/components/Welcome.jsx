@@ -9,7 +9,7 @@ export default function Welcome() {
     <div className="container mx-auto px-4 h-screen flex items-center">
       <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
         <div className="w-full md:w-2/3 space-y-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white lg:leading-normal py-1">
+          <h1 className="text-xl md:text-4xl lg:text-5xl font-bold text-white lg:leading-normal py-1">
             Converto{" "}
             <span className="animated-gradient bg-clip-text text-transparent inline-flex items-center text-stroke">
               desafios
